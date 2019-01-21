@@ -150,5 +150,87 @@ namespace KBEngine
         {
             return FPMath.Abs(p0.x - p1.x) + FPMath.Abs(p0.y - p1.y);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="grid"></param>
+        /// <param name="startPos"></param>
+        /// <param name="goalPos"></param>
+        /// <param name="pathfinder"></param>
+        /// <returns></returns>
+        public static List<Vector2Int> Pathfind(Grid grid, Vector2Int startPos, Vector2Int goalPos,AStarPathfinder pathfinder = null)
+        {
+            // Reset the allocated MapSearchNode pointer
+            if(pathfinder == null)
+            {
+                pathfinder = new AStarPathfinder(grid);
+            }
+
+            pathfinder.InitiatePathfind();
+
+            // Create a start state
+            MapSearchNode nodeStart = pathfinder.AllocateMapSearchNode(startPos);
+
+            // Define the goal state
+            MapSearchNode nodeEnd = pathfinder.AllocateMapSearchNode(goalPos);
+
+            // Set Start and goal states
+            pathfinder.SetStartAndGoalStates(nodeStart, nodeEnd);
+
+            // Set state to Searching and perform the search
+            AStarPathfinder.SearchState searchState = AStarPathfinder.SearchState.Searching;
+            uint searchSteps = 0;
+
+            do
+            {
+                searchState = pathfinder.SearchStep();
+                searchSteps++;
+            }
+            while (searchState == AStarPathfinder.SearchState.Searching);
+
+            // Search complete
+            bool pathfindSucceeded = (searchState == AStarPathfinder.SearchState.Succeeded);
+
+            if (pathfindSucceeded)
+            {
+                // Success
+                List<Vector2Int> newPath = new List<Vector2Int>();
+                int numSolutionNodes = 0;   // Don't count the starting cell in the path length
+
+                // Get the start node
+                MapSearchNode node = pathfinder.GetSolutionStart();
+                newPath.Add(node.nodeIndex);
+                ++numSolutionNodes;
+
+                // Get all remaining solution nodes
+                for (; ; )
+                {
+                    node = pathfinder.GetSolutionNext();
+
+                    if (node == null)
+                    {
+                        break;
+                    }
+
+                    ++numSolutionNodes;
+                    newPath.Add(node.nodeIndex);
+                };
+
+                // Once you're done with the solution we can free the nodes up
+                pathfinder.FreeSolutionNodes();
+
+                return newPath;
+                //System.Console.WriteLine("Solution path length: " + numSolutionNodes);
+                //System.Console.WriteLine("Solution: " + newPath.ToString());
+            }
+            else if (searchState == AStarPathfinder.SearchState.Failed)
+            {
+                // FAILED, no path to goal
+                //System.Console.WriteLine("Pathfind FAILED!");
+            }
+
+            return null;
+        }
     }
 }

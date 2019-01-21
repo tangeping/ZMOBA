@@ -177,6 +177,7 @@ namespace KBEngine
         public Vector2Int[] GetPath(Vector2Int start, Vector2Int end)
             => GetPath(start, end, MovementPatterns.Full);
 
+        #region Roy-Astar
         /// <summary>
         /// Computes the lowest-cost path from start to end inside the grid for an agent with a custom
         /// movement pattern
@@ -254,13 +255,37 @@ namespace KBEngine
             }
 
             return GetIndexUnchecked(x, y);
-        }     
+        } 
         
+        public bool CheckIndexValid(int x, int y)
+        {
+            return (x >= 0 && x < this.DimX) && (y >= 0 && y < this.DimY); 
+        }
+
         /// <summary>
         /// Converts a 2d index to a 1d index without any bounds checking
         /// </summary>        
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         internal int GetIndexUnchecked(int x, int y) => this.DimX * y + x;
+
+        #endregion
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
+        /// <param name="pathfinder"></param>
+        /// <returns></returns>
+        public Vector2Int[] GetPath(Vector2Int start, Vector2Int end, AStarPathfinder pathfinder)
+        {
+            var current = PathFinder.Pathfind(this, start, end, pathfinder);
+
+            if (current == null)
+            {
+                return new Vector2Int[0];
+            }
+            return current.ToArray();
+        }
     }    
 }
 
