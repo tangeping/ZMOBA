@@ -17,7 +17,8 @@ namespace KBEngine {
         /**
          *  @brief Index of the owner at initial players list.
          */
-		public int ownerIndex = -1;
+        [HideInInspector]
+        public int ownerIndex = -1;
 
         /**
          *  @brief Basic info about the owner of this behaviour.

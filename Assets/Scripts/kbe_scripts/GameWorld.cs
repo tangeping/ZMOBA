@@ -26,9 +26,9 @@ public class GameWorld : MonoBehaviour
         // in world
         KBEngine.Event.registerOut("onEnterWorld", this, "onEnterWorld");
         KBEngine.Event.registerOut("onLeaveWorld", this, "onLeaveWorld");
-        KBEngine.Event.registerOut("updatePosition", this, "updatePosition"); 
-        KBEngine.Event.registerOut("set_position", this, "set_position");
-        KBEngine.Event.registerOut("set_direction", this, "set_direction");
+//         KBEngine.Event.registerOut("updatePosition", this, "updatePosition"); 
+//         KBEngine.Event.registerOut("set_position", this, "set_position");
+//         KBEngine.Event.registerOut("set_direction", this, "set_direction");
     }
 
     void OnDestroy()
@@ -62,44 +62,44 @@ public class GameWorld : MonoBehaviour
     }
 
 
-    public void updatePosition(KBEngine.Entity entity)
-    {
-        if (entity.className == "Avatar")
-        {
-            FrameSyncReportBase comp = SpaceData.Instance.SpacePlayers.Find(s => s.ownerID == entity.id);
-
-            if(comp != null)
-            {
-                //Debug.Log("updatePosition comp.owner.position:" + comp.owner.position +",entity.posiont:"+entity.position);
-            }
-        }
-
-    }
-    public void set_position(KBEngine.Entity entity)
-    {
-        if (entity.className == "Avatar")
-        {
-            FrameSyncReportBase comp = SpaceData.Instance.SpacePlayers.Find(s => s.ownerID == entity.id);
-
-            if (comp != null)
-            {
-                //Debug.Log("comp.owner.position:" + comp.owner.position + ",entity.position:" + entity.position);
-            }
-        }
-    }
-
-    public void set_direction(KBEngine.Entity entity)
-    {
-        if (entity.className == "Avatar")
-        {
-            FrameSyncReportBase comp = SpaceData.Instance.SpacePlayers.Find(s => s.ownerID == entity.id);
-
-            if (comp != null)
-            {
-                //Debug.Log("comp.owner.direction:" + comp.owner.direction + ",entity.direction:" + entity.direction);
-            }
-        }
-    }
+//     public void updatePosition(KBEngine.Entity entity)
+//     {
+//         if (entity.className == "Avatar")
+//         {
+//             FrameSyncReportBase comp = SpaceData.Instance.SpacePlayers.Find(s => s.ownerID == entity.id);
+// 
+//             if(comp != null)
+//             {
+//                 //Debug.Log("updatePosition comp.owner.position:" + comp.owner.position +",entity.posiont:"+entity.position);
+//             }
+//         }
+// 
+//     }
+//     public void set_position(KBEngine.Entity entity)
+//     {
+//         if (entity.className == "Avatar")
+//         {
+//             FrameSyncReportBase comp = SpaceData.Instance.SpacePlayers.Find(s => s.ownerID == entity.id);
+// 
+//             if (comp != null)
+//             {
+//                 //Debug.Log("comp.owner.position:" + comp.owner.position + ",entity.position:" + entity.position);
+//             }
+//         }
+//     }
+// 
+//     public void set_direction(KBEngine.Entity entity)
+//     {
+//         if (entity.className == "Avatar")
+//         {
+//             FrameSyncReportBase comp = SpaceData.Instance.SpacePlayers.Find(s => s.ownerID == entity.id);
+// 
+//             if (comp != null)
+//             {
+//                 //Debug.Log("comp.owner.direction:" + comp.owner.direction + ",entity.direction:" + entity.direction);
+//             }
+//         }
+//     }
 
 
 }

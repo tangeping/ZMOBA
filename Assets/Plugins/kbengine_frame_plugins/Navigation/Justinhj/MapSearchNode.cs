@@ -117,6 +117,10 @@ namespace KBEngine
                 AddNeighbourNodeOfAttachVolume(-1, 0, parentPos, aStarSearch);
                 AddNeighbourNodeOfAttachVolume(0, 1, parentPos, aStarSearch);
                 AddNeighbourNodeOfAttachVolume(0, -1, parentPos, aStarSearch);
+                AddNeighbourNodeOfAttachVolume(1, -1, parentPos, aStarSearch);
+                AddNeighbourNodeOfAttachVolume(-1, 1, parentPos, aStarSearch);
+                AddNeighbourNodeOfAttachVolume(1, 1, parentPos, aStarSearch);
+                AddNeighbourNodeOfAttachVolume(-1, -1, parentPos, aStarSearch);
             }
             else
             {
@@ -125,6 +129,10 @@ namespace KBEngine
                 AddNeighbourNode(0, -1, parentPos, aStarSearch);
                 AddNeighbourNode(1, 0, parentPos, aStarSearch);
                 AddNeighbourNode(0, 1, parentPos, aStarSearch);
+                AddNeighbourNode(1, -1, parentPos, aStarSearch);
+                AddNeighbourNode(-1, 1, parentPos, aStarSearch);
+                AddNeighbourNode(1, 1, parentPos, aStarSearch);
+                AddNeighbourNode(-1, -1, parentPos, aStarSearch);
             }
             return true;
         }

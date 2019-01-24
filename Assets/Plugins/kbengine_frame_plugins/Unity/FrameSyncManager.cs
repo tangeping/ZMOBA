@@ -491,7 +491,7 @@ public class FrameSyncManager : MonoBehaviour {
                 {
                     for (int i = 0; i < SpaceData.Instance.SpacePlayers.Count; i++)
                     {
-                        InputData data =  (InputData)InputData.createObject();
+                        InputData data = new InputData();
                         data.ownerID = SpaceData.Instance.SpacePlayers[i].ownerID;
                         allInputData.Add(data);
                     }
@@ -501,7 +501,7 @@ public class FrameSyncManager : MonoBehaviour {
                     for (int i = 0; i < framedata.operation.Count; i++)
                     {
                         FS_ENTITY_DATA e = framedata.operation[i];
-                        InputData data = (InputData)InputData.createObject();
+                        InputData data = new InputData();
                         data.Deserialize(e);
                         allInputData.Add(data);
                     }
@@ -509,10 +509,6 @@ public class FrameSyncManager : MonoBehaviour {
 
                 OnStepUpdate(allInputData);
 
-                for (int i = 0; i < allInputData.Count; i++)
-                {
-                    InputData.reclaimObject(allInputData[i]);
-                }
                 PhysicsManager.instance.UpdateStep();
             }
         }
@@ -541,7 +537,7 @@ public class FrameSyncManager : MonoBehaviour {
 
     void OnUpateInputData()
     {
-        InputData data =  (InputData)InputData.createObject();
+        InputData data = new InputData();
 
         data.ownerID = SpaceData.Instance.localPlayer.ownerID;
 
@@ -551,8 +547,7 @@ public class FrameSyncManager : MonoBehaviour {
         {
             KBEngine.Event.fireIn("reportFrame", data.Serialize());
         }
-
-        InputData.reclaimObject(data);
+        
     }
 
 
