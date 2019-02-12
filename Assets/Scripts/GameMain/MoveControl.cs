@@ -15,10 +15,9 @@ public class MoveControl : FrameSyncBehaviour
     {
         agent = GetComponent<NavAgent>();
     }
-    public override void OnSyncedStart()
+    private  void Start()
     {
         floorMask = LayerMask.GetMask("ground");
-
     }
 
     public override void OnSyncedInput()
@@ -51,6 +50,8 @@ public class MoveControl : FrameSyncBehaviour
         SetIndicatorViaPosition(mousePoint.ToVector(), mouseNormal.ToVector());
         agent.SetDestination(mousePoint);
     }
+
+
 
     [Header("Indicator")]
     public GameObject indicatorPrefab;

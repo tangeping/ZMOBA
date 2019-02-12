@@ -544,12 +544,17 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4502691813686440}
+  - component: {fileID: 95708627788138850}
   - component: {fileID: 114435370464687826}
+  - component: {fileID: 114275105791848516}
+  - component: {fileID: 114620749906266268}
   - component: {fileID: 114313583289639516}
   - component: {fileID: 114385116389486138}
+  - component: {fileID: 114339660873798130}
+  - component: {fileID: 114804896185404844}
   m_Layer: 0
   m_Name: Hero1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1651,8 +1656,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1276951828689048}
-  m_LocalRotation: {x: -0.44868225, y: 0.5475659, z: -0.44740564, w: 0.54651994}
-  m_LocalPosition: {x: 0, y: 0.04300022, z: 0}
+  m_LocalRotation: {x: -0.44868222, y: 0.54756594, z: -0.44740564, w: 0.54652}
+  m_LocalPosition: {x: 0, y: 1.7870002, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4871677279981016}
@@ -1996,7 +2001,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1344314046906342}
   m_LocalRotation: {x: -0, y: 0.26427755, z: -0, w: 0.96444666}
-  m_LocalPosition: {x: 12.008139, y: 11.058, z: 6.721512}
+  m_LocalPosition: {x: 17.856, y: 9.8810005, z: 15.123}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4177987761944646}
@@ -2653,8 +2658,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1845652875538554}
-  m_LocalRotation: {x: -0.7071068, y: -0.000000044703484, z: -0.000000044703484, w: 0.7071068}
-  m_LocalPosition: {x: -2.0259998, y: -1.0570002, z: 0.08800033}
+  m_LocalRotation: {x: -0.7071068, y: -0.000000059604645, z: -0.000000059604645, w: 0.7071068}
+  m_LocalPosition: {x: -2.0259986, y: 0.6869998, z: 0.087999985}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4502691813686440}
@@ -2714,6 +2719,52 @@ Transform:
   m_Father: {fileID: 4138085359005142}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &95708627788138850
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1344314046906342}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 10032542019f85d45a7d83079ad7f9ca, type: 3}
+  m_Controller: {fileID: 9100000, guid: dbd28e92ae816fe478b7963fc9f0001c, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114275105791848516
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1344314046906342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a28ae6410b292a849acaf86aab67a984, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isTrigger: 1
+  tsMaterial: {fileID: 0}
+  center:
+    x:
+      _serializedValue: 0
+    y:
+      _serializedValue: 0
+    z:
+      _serializedValue: 0
+  lossyScale:
+    x:
+      _serializedValue: 4294967040
+    y:
+      _serializedValue: 4294967296
+    z:
+      _serializedValue: 4294967040
+  FPTransform: {fileID: 114435370464687826}
+  _radius: 8
 --- !u!114 &114313583289639516
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2727,7 +2778,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numberOfPlayers: 0
   ownerIndex: -1
+  teamID: -1
   indicatorPrefab: {fileID: 100000, guid: f50d4b437596c3e49b5ffa71015d82df, type: 2}
+--- !u!114 &114339660873798130
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1344314046906342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7658a38e49817774b89a09b12c19df57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114385116389486138
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2741,8 +2804,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numberOfPlayers: 0
   ownerIndex: -1
-  Speed:
-    _serializedValue: 8589934592
+  teamID: -1
 --- !u!114 &114435370464687826
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2756,11 +2818,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _position:
     x:
-      _serializedValue: 51574562816
+      _serializedValue: 76690939904
     y:
-      _serializedValue: 47493746688
+      _serializedValue: 42438574080
     z:
-      _serializedValue: 28868673536
+      _serializedValue: 64952791040
   _rotation:
     x:
       _serializedValue: 0
@@ -2780,6 +2842,41 @@ MonoBehaviour:
   _serialized: 1
   tsCollider: {fileID: 0}
   tsParent: {fileID: 0}
+--- !u!114 &114620749906266268
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1344314046906342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f72c708013f210a439c4d689c3a6efaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mass:
+    _serializedValue: 4294967296
+  _useGravity: 0
+  _isKinematic: 1
+  _linearDrag:
+    _serializedValue: 0
+  _angularDrag:
+    _serializedValue: 214748368
+  interpolation: 0
+  _constraints: 0
+--- !u!114 &114804896185404844
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1344314046906342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2f5ab887229b26479ee6fc373b71cbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numberOfPlayers: 0
+  ownerIndex: -1
+  teamID: -1
 --- !u!137 &137546575226051838
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

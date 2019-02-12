@@ -80,7 +80,7 @@ public class FrameSyncManager : MonoBehaviour {
             thresholdFrame = Mathf.Clamp(value,1, kThresholdMaxFrame);
         }
     }
-
+    private FP timeSlice;
     public static FP TimeSlice
     {
         get
@@ -94,8 +94,18 @@ public class FrameSyncManager : MonoBehaviour {
         }
     }
 
-    private FP timeSlice;
-
+    public static FS_FRAME_DATA CurrFrame
+    {
+        get
+        {
+            if(instance == null)
+            {
+                return null;
+            }
+            return instance.currFrame;
+        }
+    }
+    private FS_FRAME_DATA currFrame = null;
 
     /**
      * @brief The coroutine scheduler.
@@ -109,7 +119,7 @@ public class FrameSyncManager : MonoBehaviour {
     /**
      * @brief A dictionary of {@link FrameSyncBehaviour} not linked to any player.
      **/
-    private List<KeyValuePair<IFrameSyncBehaviour, FrameSyncManagedBehaviour>> mapManagedBehaviors =
+    private List<KeyValuePair<IFrameSyncBehaviour, FrameSyncManagedBehaviour>> ListManagedBehaviors =
         new List<KeyValuePair<IFrameSyncBehaviour, FrameSyncManagedBehaviour>>();
     /**
      * @brief A dictionary holding a list of {@link FrameSyncBehaviour} belonging to each player.
@@ -124,10 +134,10 @@ public class FrameSyncManager : MonoBehaviour {
     }
 
     public int GetBehaviourIndex(List<KeyValuePair<IFrameSyncBehaviour, FrameSyncManagedBehaviour>> Behaviors, IFrameSyncBehaviour bh)
-    {       
+    {
         for (int i = 0; i < Behaviors.Count; i++)
         {
-            if(Behaviors[i].Key == bh)
+            if (Behaviors[i].Key == bh)
             {
                 return i;
             }
@@ -221,28 +231,114 @@ public class FrameSyncManager : MonoBehaviour {
         if (instance != null /*&& instance.lockstep != null*/)
         {
             GameObject go = GameObject.Instantiate(prefab, position.ToVector(), rotation.ToQuaternion()) as GameObject;
-
-            MonoBehaviour[] monoBehaviours = go.GetComponentsInChildren<MonoBehaviour>();
-            for (int index = 0, length = monoBehaviours.Length; index < length; index++)
-            {
-                MonoBehaviour bh = monoBehaviours[index];
-
-                if (bh is IFrameSyncBehaviour)
-                {
-                    instance.mapManagedBehaviors.Add( new KeyValuePair<IFrameSyncBehaviour, FrameSyncManagedBehaviour>(
-                       (IFrameSyncBehaviour)bh, instance.NewManagedBehavior((IFrameSyncBehaviour)bh)
-                       ));
-                }
-            }
-
+            AddSyncBehaviour(go);
             InitializeGameObject(go, position, rotation);
-
             return go;
         }
-
         return null;
     }
 
+    public static GameObject AddSyncBehaviour(GameObject go)
+    {
+        if(go == null || instance ==null)
+        {
+            return null;
+        }
+
+        MonoBehaviour[] monoBehaviours = go.GetComponentsInChildren<MonoBehaviour>();
+        for (int index = 0, length = monoBehaviours.Length; index < length; index++)
+        {
+            MonoBehaviour bh = monoBehaviours[index];
+
+            if (bh is IFrameSyncBehaviour)
+            {
+                instance.ListManagedBehaviors.Add(new KeyValuePair<IFrameSyncBehaviour, FrameSyncManagedBehaviour>(
+                   (IFrameSyncBehaviour)bh, instance.NewManagedBehavior((IFrameSyncBehaviour)bh)
+                   ));
+            }
+        }
+        return go;
+    }
+
+    public static GameObject RemoveSyncBehaviour(GameObject go)
+    {
+        if (go == null || instance == null)
+        {
+            return null;
+        }
+
+        List<FrameSyncBehaviour> behavioursToRemove = new List<FrameSyncBehaviour>(go.GetComponentsInChildren<FrameSyncBehaviour>());
+
+        for (int i = 0; i < behavioursToRemove.Count; i++)
+        {
+            IFrameSyncBehaviour tsmb = behavioursToRemove[i] as IFrameSyncBehaviour;
+
+            int index = instance.GetBehaviourIndex(instance.ListManagedBehaviors, tsmb);
+            if (index >= 0)
+            {
+                instance.ListManagedBehaviors.RemoveAt(index);
+            }
+        }
+        return go;
+    }
+
+    /**
+ * @brief Destroys a GameObject in a deterministic way.
+ * 
+ * The method {@link #DestroyFPRigidBody} is called and attached FrameSyncBehaviors are disabled.
+ * 
+ * @param rigidBody Instance of a {@link FPRigidBody}
+ **/
+    public static void SyncedDestroy(GameObject go)
+    {
+        if (instance != null /*&& instance.lockstep != null*/)
+        {
+            SyncedDisableBehaviour(go);
+
+            FPCollider[] tsColliders = go.GetComponentsInChildren<FPCollider>();
+            if (tsColliders != null)
+            {
+                for (int index = 0, length = tsColliders.Length; index < length; index++)
+                {
+                    FPCollider tsCollider = tsColliders[index];
+                    DestroyFPRigidBody(tsCollider.gameObject, tsCollider.Body);
+                }
+            }
+
+            FPCollider2D[] tsColliders2D = go.GetComponentsInChildren<FPCollider2D>();
+            if (tsColliders2D != null)
+            {
+                for (int index = 0, length = tsColliders2D.Length; index < length; index++)
+                {
+                    FPCollider2D tsCollider2D = tsColliders2D[index];
+                    DestroyFPRigidBody(tsCollider2D.gameObject, tsCollider2D.Body);
+                }
+            }
+            RemoveSyncBehaviour(go);
+            Destroy(go,1.0f);//延时1秒销毁
+        }
+    }
+
+    /**
+     * @brief Disables 'OnSyncedInput' and 'OnSyncUpdate' calls to every {@link IFrameSyncBehaviour} attached.
+     **/
+    public static void SyncedDisableBehaviour(GameObject gameObject)
+    {
+        MonoBehaviour[] monoBehaviours = gameObject.GetComponentsInChildren<MonoBehaviour>();
+
+        for (int index = 0, length = monoBehaviours.Length; index < length; index++)
+        {
+            MonoBehaviour tsb = monoBehaviours[index];
+
+            int i = -1;
+
+            if (tsb is IFrameSyncBehaviour && (i = instance.GetBehaviourIndex(instance.ListManagedBehaviors, (IFrameSyncBehaviour)tsb)) >= 0)
+
+            {
+                instance.ListManagedBehaviors[i].Value.disabled = true;
+            }
+        }
+    }
 
     private static void InitializeGameObject(GameObject go, FPVector position, FPQuaternion rotation)
     {
@@ -351,63 +447,7 @@ public class FrameSyncManager : MonoBehaviour {
         }
     }
 
-    /**
-     * @brief Destroys a GameObject in a deterministic way.
-     * 
-     * The method {@link #DestroyFPRigidBody} is called and attached FrameSyncBehaviors are disabled.
-     * 
-     * @param rigidBody Instance of a {@link FPRigidBody}
-     **/
-    public static void SyncedDestroy(GameObject gameObject)
-    {
-        if (instance != null /*&& instance.lockstep != null*/)
-        {
-            SyncedDisableBehaviour(gameObject);
 
-            FPCollider[] tsColliders = gameObject.GetComponentsInChildren<FPCollider>();
-            if (tsColliders != null)
-            {
-                for (int index = 0, length = tsColliders.Length; index < length; index++)
-                {
-                    FPCollider tsCollider = tsColliders[index];
-                    DestroyFPRigidBody(tsCollider.gameObject, tsCollider.Body);
-                }
-            }
-
-            FPCollider2D[] tsColliders2D = gameObject.GetComponentsInChildren<FPCollider2D>();
-            if (tsColliders2D != null)
-            {
-                for (int index = 0, length = tsColliders2D.Length; index < length; index++)
-                {
-                    FPCollider2D tsCollider2D = tsColliders2D[index];
-                    DestroyFPRigidBody(tsCollider2D.gameObject, tsCollider2D.Body);
-                }
-            }
-           
-            Destroy(gameObject);
-        }
-    }
-
-    /**
-     * @brief Disables 'OnSyncedInput' and 'OnSyncUpdate' calls to every {@link IFrameSyncBehaviour} attached.
-     **/
-    public static void SyncedDisableBehaviour(GameObject gameObject)
-    {
-        MonoBehaviour[] monoBehaviours = gameObject.GetComponentsInChildren<MonoBehaviour>();
-
-        for (int index = 0, length = monoBehaviours.Length; index < length; index++)
-        {
-            MonoBehaviour tsb = monoBehaviours[index];
-
-            int i = -1;
-
-            if (tsb is IFrameSyncBehaviour && (i = instance.GetBehaviourIndex(instance.mapManagedBehaviors, (IFrameSyncBehaviour)tsb) )>= 0)
-
-            {
-                instance.mapManagedBehaviors[i].Value.disabled = true;
-            }
-        }
-    }
 
     /**
      * @brief The related GameObject is firstly set to be inactive then in a safe moment it will be destroyed.
@@ -430,7 +470,7 @@ public class FrameSyncManager : MonoBehaviour {
     {
         if (instance != null /*&& instance.lockstep != null*/)
         {
-            instance.mapManagedBehaviors.Add(new KeyValuePair<IFrameSyncBehaviour, FrameSyncManagedBehaviour>(
+            instance.ListManagedBehaviors.Add(new KeyValuePair<IFrameSyncBehaviour, FrameSyncManagedBehaviour>(
                 FrameSyncBehaviour, instance.NewManagedBehavior(FrameSyncBehaviour)));
         }
     }
@@ -483,11 +523,11 @@ public class FrameSyncManager : MonoBehaviour {
                 int count = SpaceData.Instance.frameList.Count;
                 timeSlice = DeltaTime / (count <= ThresholdFrame ? 1 : count / ThresholdFrame);
 
-                FS_FRAME_DATA framedata = SpaceData.Instance.frameList.Dequeue();
+                currFrame = SpaceData.Instance.frameList.Dequeue();
 
                 List<InputDataBase> allInputData = new List<InputDataBase>();
 
-                if (framedata.operation.Count <= 1 && framedata.operation[0].cmd_type == 0)
+                if (currFrame.operation.Count <= 1 && currFrame.operation[0].cmd_type == 0)
                 {
                     for (int i = 0; i < SpaceData.Instance.SpacePlayers.Count; i++)
                     {
@@ -498,9 +538,9 @@ public class FrameSyncManager : MonoBehaviour {
                 }
                 else
                 {
-                    for (int i = 0; i < framedata.operation.Count; i++)
+                    for (int i = 0; i < currFrame.operation.Count; i++)
                     {
-                        FS_ENTITY_DATA e = framedata.operation[i];
+                        FS_ENTITY_DATA e = currFrame.operation[i];
                         InputData data = new InputData();
                         data.Deserialize(e);
                         allInputData.Add(data);
@@ -559,9 +599,9 @@ public class FrameSyncManager : MonoBehaviour {
         FrameSyncInput.CurrentSimulationData = null;
 
 
-        for (int index = 0; index < mapManagedBehaviors.Count; index++)
+        for (int index = 0; index < ListManagedBehaviors.Count; index++)
         {
-            FrameSyncManagedBehaviour bh = mapManagedBehaviors[index].Value;
+            FrameSyncManagedBehaviour bh = ListManagedBehaviors[index].Value;
 
             if (bh != null && !bh.disabled)
             {
@@ -602,24 +642,7 @@ public class FrameSyncManager : MonoBehaviour {
         {
             PhysicsManager.instance.RemoveBody(body);
 
-            List<FrameSyncBehaviour> behavioursToRemove = new List<FrameSyncBehaviour>(go.GetComponentsInChildren<FrameSyncBehaviour>());
-
-            for (int i = 0; i < behavioursToRemove.Count; i++)
-            {
-                IFrameSyncBehaviour tsmb = behavioursToRemove[i] as IFrameSyncBehaviour;
-
-                int index = GetBehaviourIndex(mapManagedBehaviors, tsmb);
-                if(index >= 0)
-                {
-                    mapManagedBehaviors.RemoveAt(index);
-                }
-            }
-
-            foreach (var item in behaviorsByPlayer)
-            {
-                List<FrameSyncManagedBehaviour> listBh = item.Value;
-                RemoveFromTSMBList(listBh, behavioursToRemove);
-            }
+            RemoveSyncBehaviour(go);
         }
     }
 
@@ -654,9 +677,9 @@ public class FrameSyncManager : MonoBehaviour {
             }
         }
 
-        for (int j = 0; j < mapManagedBehaviors.Count; j++)
+        for (int j = 0; j < ListManagedBehaviors.Count; j++)
         {
-            FrameSyncManagedBehaviour fsmb = mapManagedBehaviors[j].Value;
+            FrameSyncManagedBehaviour fsmb = ListManagedBehaviors[j].Value;
             fsmb.OnSyncedStart();
         }
     }

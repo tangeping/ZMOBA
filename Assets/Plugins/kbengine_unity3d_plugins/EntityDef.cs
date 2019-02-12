@@ -226,7 +226,7 @@ namespace KBEngine
 			Property pAvatar_teamID = new Property();
 			pAvatar_teamID.name = "teamID";
 			pAvatar_teamID.properUtype = 6;
-			pAvatar_teamID.properFlags = 16;
+			pAvatar_teamID.properFlags = 4;
 			pAvatar_teamID.aliasID = 7;
 			SByte Avatar_teamID_defval;
 			SByte.TryParse("0", out Avatar_teamID_defval);

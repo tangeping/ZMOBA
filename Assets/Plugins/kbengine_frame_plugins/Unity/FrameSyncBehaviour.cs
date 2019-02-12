@@ -19,7 +19,11 @@ namespace KBEngine {
          */
         [HideInInspector]
         public int ownerIndex = -1;
-
+        /**
+         *  @brief Index of the team initial entity.
+         */
+        [HideInInspector]
+        public int teamID = -1;
         /**
          *  @brief Basic info about the owner of this behaviour.
          */
