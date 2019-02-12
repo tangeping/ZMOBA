@@ -12,7 +12,10 @@ namespace KBEngine
         public List<FrameSyncReportBase> SpacePlayers = new List<FrameSyncReportBase>();
 
         public Queue<FS_FRAME_DATA> frameList = new Queue<FS_FRAME_DATA>();
-  
+
+        public int npcCount = 0;
+
+        public UInt32 npcID = 10001;
     }
 }
 

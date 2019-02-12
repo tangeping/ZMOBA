@@ -1,0 +1,13 @@
+# Ignore everything in this directory 
+*.meta
+*.csproj
+*.7z
+*.vs
+*.idea
+Temp
+Rlease
+obj
+Library
+
+
+# Except this file !.gitignore 

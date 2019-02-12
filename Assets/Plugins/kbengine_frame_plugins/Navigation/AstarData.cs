@@ -33,8 +33,7 @@ namespace KBEngine
                 if(this.gridGraph.DimX >0  && this.gridGraph.DimY > 0)
                 {
                     Debug.Log("Load " + file_cachedStartup.name + " Successfully!!!");
-                }
-                
+                }               
             }
             else
             {

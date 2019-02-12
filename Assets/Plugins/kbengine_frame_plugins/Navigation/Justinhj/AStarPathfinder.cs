@@ -58,8 +58,8 @@ namespace KBEngine
         int successorListHighWaterMark = 0;
 
         // Fixed sizes for collections
-        readonly int kPreallocatedNodes = 8000;
-        readonly int kPreallocatedMapSearchNodes = 8000;
+        readonly int kPreallocatedNodes = 80000;
+        readonly int kPreallocatedMapSearchNodes = 80000;
 
         readonly int kPreallocatedOpenListSlots = 32;
         readonly int kPreallocatedClosedListSlots = 256;

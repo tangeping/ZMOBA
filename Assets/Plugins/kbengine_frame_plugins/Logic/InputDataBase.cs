@@ -4,29 +4,26 @@ using System.Collections.Generic;
 namespace KBEngine
 {
 	[Serializable]
-	public  class InputDataBase : ObjectPool<InputDataBase> 
-    {
+	public abstract class InputDataBase : ResourcePoolItem
+	{
 		public int ownerID;
 
 		public InputDataBase()
 		{
 		}
 
-		public virtual void Serialize(List<byte> bytes) { }
+		public abstract void Serialize(List<byte> bytes);
 
-		public virtual void Deserialize(byte[] data, ref int offset) { }
+		public abstract void Deserialize(byte[] data, ref int offset);
 
-        public virtual FS_ENTITY_DATA Serialize() { return new FS_ENTITY_DATA(); }
+        public abstract FS_ENTITY_DATA Serialize();
 
-        public virtual void Deserialize(FS_ENTITY_DATA e) { }
+        public abstract void Deserialize(FS_ENTITY_DATA e);
 
-        public virtual bool EqualsData(InputDataBase otherBase) { return false; }
+        public abstract bool EqualsData(InputDataBase otherBase);
 
-        public virtual void CleanUp() { }
+		public abstract void CleanUp();
 
-        public virtual void CopyFrom(InputDataBase fromBase) { }
-    }
-
-
-
+		public abstract void CopyFrom(InputDataBase fromBase);
+	}
 }

@@ -54,8 +54,18 @@ namespace KBEngine
         public bool IsWalkable(Vector3 point)
         {
             RaycastHit outhit;
-            int layer = 1<< LayerMask.NameToLayer("walkable");
-            return Physics.Raycast(new Vector3(point.x, 100.0f, point.z), -Vector3.up, out outhit, Mathf.Infinity, layer);
+            //             int layer = 1 << LayerMask.NameToLayer("obstacle");
+            //             return !Physics.Raycast(new Vector3(point.x, 100.0f, point.z), -Vector3.up, out outhit, Mathf.Infinity, layer);
+
+            if (Physics.Raycast(new Vector3(point.x, 100.0f, point.z), -Vector3.up, out outhit))
+            {
+                if (outhit.collider.gameObject.layer == LayerMask.NameToLayer("ground"))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         /// <summary>

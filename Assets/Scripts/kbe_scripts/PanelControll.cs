@@ -134,7 +134,7 @@ public class PanelControll : MonoBehaviour {
     {
         if(result == 0)
         {
-            SceneManager.LoadScene("Battlefield");
+            SceneManager.LoadScene("SimpleField");//
         }
     }
 
