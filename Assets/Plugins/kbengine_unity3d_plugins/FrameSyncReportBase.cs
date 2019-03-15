@@ -30,6 +30,11 @@ namespace KBEngine
 			cellEntityCall = new EntityCellEntityCall_FrameSyncReportBase(entityComponentPropertyID, ownerID);
 		}
 
+		public override ScriptModule getScriptModule()
+		{
+			return EntityDef.moduledefs["FrameSyncReport"];
+		}
+
 		public override void onRemoteMethodCall(UInt16 methodUtype, MemoryStream stream)
 		{
 			ScriptModule sm = EntityDef.moduledefs["FrameSyncReport"];

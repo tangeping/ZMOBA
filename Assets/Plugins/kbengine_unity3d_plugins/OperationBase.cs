@@ -20,12 +20,23 @@ namespace KBEngine
 
 
 		public abstract void readyResult(Byte arg1); 
+		public abstract void rspHeroInfo(D_HERO_INFOS_LIST arg1); 
+		public abstract void rspPropsInfo(D_PROPS_INFOS_LIST arg1); 
+		public abstract void rspRoadInfo(D_ROAD_INFOS_LIST arg1); 
+		public abstract void rspShopInfo(D_SHOP_INFOS_LIST arg1); 
+		public abstract void rspSkillInfo(D_SKILL_INFOS_LIST arg1); 
+		public abstract void rspTeamInfo(D_TEAM_INFOS_LIST arg1); 
 
 		public override void createFromStream(MemoryStream stream)
 		{
 			base.createFromStream(stream);
 			baseEntityCall = new EntityBaseEntityCall_OperationBase(entityComponentPropertyID, ownerID);
 			cellEntityCall = new EntityCellEntityCall_OperationBase(entityComponentPropertyID, ownerID);
+		}
+
+		public override ScriptModule getScriptModule()
+		{
+			return EntityDef.moduledefs["Operation"];
 		}
 
 		public override void onRemoteMethodCall(UInt16 methodUtype, MemoryStream stream)
@@ -35,9 +46,33 @@ namespace KBEngine
 			Method method = sm.idmethods[methodUtype];
 			switch(method.methodUtype)
 			{
-				case 6:
+				case 14:
 					Byte readyResult_arg1 = stream.readUint8();
 					readyResult(readyResult_arg1);
+					break;
+				case 16:
+					D_HERO_INFOS_LIST rspHeroInfo_arg1 = ((DATATYPE_D_HERO_INFOS_LIST)method.args[0]).createFromStreamEx(stream);
+					rspHeroInfo(rspHeroInfo_arg1);
+					break;
+				case 17:
+					D_PROPS_INFOS_LIST rspPropsInfo_arg1 = ((DATATYPE_D_PROPS_INFOS_LIST)method.args[0]).createFromStreamEx(stream);
+					rspPropsInfo(rspPropsInfo_arg1);
+					break;
+				case 15:
+					D_ROAD_INFOS_LIST rspRoadInfo_arg1 = ((DATATYPE_D_ROAD_INFOS_LIST)method.args[0]).createFromStreamEx(stream);
+					rspRoadInfo(rspRoadInfo_arg1);
+					break;
+				case 18:
+					D_SHOP_INFOS_LIST rspShopInfo_arg1 = ((DATATYPE_D_SHOP_INFOS_LIST)method.args[0]).createFromStreamEx(stream);
+					rspShopInfo(rspShopInfo_arg1);
+					break;
+				case 19:
+					D_SKILL_INFOS_LIST rspSkillInfo_arg1 = ((DATATYPE_D_SKILL_INFOS_LIST)method.args[0]).createFromStreamEx(stream);
+					rspSkillInfo(rspSkillInfo_arg1);
+					break;
+				case 20:
+					D_TEAM_INFOS_LIST rspTeamInfo_arg1 = ((DATATYPE_D_TEAM_INFOS_LIST)method.args[0]).createFromStreamEx(stream);
+					rspTeamInfo(rspTeamInfo_arg1);
 					break;
 				default:
 					break;

@@ -4,23 +4,29 @@ using System.Collections;
 [RequireComponent(typeof(Animator))]
 public class Actions : MonoBehaviour
 {
-
     private Animator animator;
-    private string[] stateNames = { "Idle", "Run", "Attack", "Death", "Dizzy", "Jump" };
-
+    private string[] stateNames = { "Idle", "Run", "Attack", "Dead", "Dizzy", "Jump" };
+    private Vector3[] skillPosition = new Vector3[4];
     void Awake()
     {
         animator = GetComponent<Animator>();
+        skillPosition[0] = new Vector3(1, 1,0); //skill_1
+        skillPosition[1] = new Vector3(0,-1,0);//skill_2
+        skillPosition[2] = new Vector3(0, 1,0);//skill_3
+        skillPosition[3] = new Vector3(-1, 0,0);//skill_4
     }
 
-    private void ActiveCastSkill(bool active)
+    public void SetCastSkill(int index)
     {
-        animator.SetBool("Casting", active);
+        if (index < skillPosition.Length)
+        {
+            Vector3 k = skillPosition[index];
+            SetCastSkill(k.x, k.y, k.z);
+        }
     }
 
     private void SetCastSkill(float x,float y,float value)
     {
-        ActiveCastSkill(true);
         animator.SetFloat("cast_x", x);
         animator.SetFloat("cast_y", y);
         animator.SetFloat("value", value);
@@ -28,13 +34,12 @@ public class Actions : MonoBehaviour
 
     private void RestCastSkill()
     {
-        ActiveCastSkill(false);
         animator.SetFloat("cast_x", 0);
         animator.SetFloat("cast_y", 0);
         animator.SetFloat("value", 0);
     }
 
-    private void SetState(string state)
+    public void SetState(string state)
     {
         foreach (var s in stateNames)
         {
@@ -62,7 +67,7 @@ public class Actions : MonoBehaviour
 
     public void Death()
     {
-        SetState("Death");
+        SetState("Dead");
         RestCastSkill();
     }
 

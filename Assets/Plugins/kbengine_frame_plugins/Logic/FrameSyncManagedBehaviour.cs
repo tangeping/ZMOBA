@@ -15,6 +15,8 @@ namespace KBEngine
 
 		public FPPlayerInfo owner;
 
+        public bool started = false;
+
 		public FrameSyncManagedBehaviour(IFrameSyncBehaviour FrameSyncBehavior)
 		{
 			StateTracker.AddTracking(this);
@@ -44,7 +46,7 @@ namespace KBEngine
 		public void OnSyncedUpdate()
 		{
 			bool flag = this.FrameSyncBehavior is IFrameSyncBehaviourGamePlay;
-			if (flag)
+			if (flag && started)
 			{
 				((IFrameSyncBehaviourGamePlay)this.FrameSyncBehavior).OnSyncedUpdate();
 			}
@@ -190,9 +192,10 @@ namespace KBEngine
         public void OnSyncedStart()
 		{
 			bool flag = this.FrameSyncBehavior is IFrameSyncBehaviourCallbacks;
-			if (flag)
+			if (flag && !started)
 			{
 				((IFrameSyncBehaviourCallbacks)this.FrameSyncBehavior).OnSyncedStart();
+                started = true;
 // 				bool flag2 = this.localOwner.Id == this.owner.Id;
 // 				if (flag2) // 本地玩家
 // 				{

@@ -84,7 +84,7 @@ namespace KBEngine
                 return;
             }
             TerrainData data = m_terrian.terrainData;
-            Debug.Log("m_terrian:" + m_terrian.transform.position +",1:"+ ((FP)1).RawValue);
+            //Debug.Log("m_terrian:" + m_terrian.transform.position +",1:"+ ((FP)1).RawValue);
 
             this.m_data.gridGraph = new Grid(gridX, gridY, m_terrian.transform.position.ToFPVector(), 
                 new Vector2Int((int)data.size.x, (int)data.size.z));

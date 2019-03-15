@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class FrameSyncManager : MonoBehaviour {
@@ -107,6 +108,30 @@ public class FrameSyncManager : MonoBehaviour {
     }
     private FS_FRAME_DATA currFrame = null;
 
+    public static UInt32 CurrFrameID
+    {
+        get
+        {
+            if (instance == null)
+            {
+                return 0;
+            }
+            return instance.currFrame.frameid;
+        }
+    }
+
+    public static FP PastTime
+    {
+        get
+        {
+            if (instance == null)
+            {
+                return 0;
+            }
+            return instance.currFrame.frameid * instance.lockedTimeStep;
+        }
+    }
+
     /**
      * @brief The coroutine scheduler.
      **/
@@ -164,6 +189,7 @@ public class FrameSyncManager : MonoBehaviour {
     {
         GameObject perfab = GameObject.Instantiate(go) as GameObject;
         perfab.name = e.className + "_" + e.id;
+        e.renderObj = perfab;
         Debug.Log(message: e.id +".position:"+e.position+",direction:"+e.direction);
         
         InitPlayerBehaviour(perfab, e);
@@ -289,7 +315,7 @@ public class FrameSyncManager : MonoBehaviour {
  * 
  * @param rigidBody Instance of a {@link FPRigidBody}
  **/
-    public static void SyncedDestroy(GameObject go)
+    public static void SyncedDestroy(GameObject go,float delayTime = 0.0f)
     {
         if (instance != null /*&& instance.lockstep != null*/)
         {
@@ -315,7 +341,7 @@ public class FrameSyncManager : MonoBehaviour {
                 }
             }
             RemoveSyncBehaviour(go);
-            Destroy(go,1.0f);//延时1秒销毁
+            Destroy(go, delayTime);
         }
     }
 
@@ -492,7 +518,6 @@ public class FrameSyncManager : MonoBehaviour {
 
         CreatePlayer();
 
-        CheckQueuedBehaviours();
     }
 
     FP duration;
@@ -524,31 +549,25 @@ public class FrameSyncManager : MonoBehaviour {
                 timeSlice = DeltaTime / (count <= ThresholdFrame ? 1 : count / ThresholdFrame);
 
                 currFrame = SpaceData.Instance.frameList.Dequeue();
-
-                List<InputDataBase> allInputData = new List<InputDataBase>();
-
-                if (currFrame.operation.Count <= 1 && currFrame.operation[0].cmd_type == 0)
+                
+                Dictionary<int, InputDataBase> dicInputData = new Dictionary<int, InputDataBase>();
+                for (int i = 0; i < SpaceData.Instance.SpacePlayers.Count; i++)
                 {
-                    for (int i = 0; i < SpaceData.Instance.SpacePlayers.Count; i++)
-                    {
-                        InputData data = new InputData();
-                        data.ownerID = SpaceData.Instance.SpacePlayers[i].ownerID;
-                        allInputData.Add(data);
-                    }
-                }
-                else
-                {
-                    for (int i = 0; i < currFrame.operation.Count; i++)
-                    {
-                        FS_ENTITY_DATA e = currFrame.operation[i];
-                        InputData data = new InputData();
-                        data.Deserialize(e);
-                        allInputData.Add(data);
-                    }
+                    InputData data = new InputData();
+                    data.ownerID = SpaceData.Instance.SpacePlayers[i].ownerID;
+                    dicInputData[data.ownerID] = data;
                 }
 
-                OnStepUpdate(allInputData);
+                for (int i = 0; i < currFrame.operation.Count; i++)
+                {
+                    FS_ENTITY_DATA e = currFrame.operation[i];
+                    InputData data = new InputData();
+                    data.Deserialize(e);
+                    dicInputData[data.ownerID] = data;
+                }
 
+                CheckQueuedBehaviours();
+                OnStepUpdate(dicInputData.Values.ToList());
                 PhysicsManager.instance.UpdateStep();
             }
         }
@@ -598,17 +617,6 @@ public class FrameSyncManager : MonoBehaviour {
 
         FrameSyncInput.CurrentSimulationData = null;
 
-
-        for (int index = 0; index < ListManagedBehaviors.Count; index++)
-        {
-            FrameSyncManagedBehaviour bh = ListManagedBehaviors[index].Value;
-
-            if (bh != null && !bh.disabled)
-            {
-                bh.OnSyncedUpdate();
-            }
-        }
-
         for (int index = 0, length = allInputData.Count; index < length; index++)
         {
             InputDataBase playerInputData = allInputData[index];
@@ -632,6 +640,15 @@ public class FrameSyncManager : MonoBehaviour {
             FrameSyncInput.CurrentSimulationData = null;
         }
 
+        for (int index = 0; index < ListManagedBehaviors.Count; index++)
+        {
+            FrameSyncManagedBehaviour bh = ListManagedBehaviors[index].Value;
+
+            if (bh != null && !bh.disabled)
+            {
+                bh.OnSyncedUpdate();
+            }
+        }
     }
 
     private void OnRemovedRigidBody(IBody body)

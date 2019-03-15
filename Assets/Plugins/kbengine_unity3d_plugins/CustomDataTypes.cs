@@ -221,4 +221,600 @@ namespace KBEngine
 	}
 
 
+
+	public class DATATYPE_D_ROAD_INFOS : DATATYPE_BASE
+	{
+		public D_ROAD_INFOS createFromStreamEx(MemoryStream stream)
+		{
+			D_ROAD_INFOS datas = new D_ROAD_INFOS();
+			datas.id = stream.readInt32();
+			datas.group = stream.readInt32();
+			datas.position_x = stream.readFloat();
+			datas.position_y = stream.readFloat();
+			datas.position_z = stream.readFloat();
+			datas.eulerAngles_x = stream.readFloat();
+			datas.eulerAngles_y = stream.readFloat();
+			datas.eulerAngles_z = stream.readFloat();
+			datas.born = stream.readInt32();
+			return datas;
+		}
+
+		public void addToStreamEx(Bundle stream, D_ROAD_INFOS v)
+		{
+			stream.writeInt32(v.id);
+			stream.writeInt32(v.group);
+			stream.writeFloat(v.position_x);
+			stream.writeFloat(v.position_y);
+			stream.writeFloat(v.position_z);
+			stream.writeFloat(v.eulerAngles_x);
+			stream.writeFloat(v.eulerAngles_y);
+			stream.writeFloat(v.eulerAngles_z);
+			stream.writeInt32(v.born);
+		}
+	}
+
+
+
+	public class DATATYPE_D_ROAD_INFOS_LIST : DATATYPE_BASE
+	{
+		private DATATYPE__D_ROAD_INFOS_LIST_values_ArrayType_ChildArray values_DataType = new DATATYPE__D_ROAD_INFOS_LIST_values_ArrayType_ChildArray();
+
+		public class DATATYPE__D_ROAD_INFOS_LIST_values_ArrayType_ChildArray : DATATYPE_BASE
+		{
+			private DATATYPE_D_ROAD_INFOS itemType = new DATATYPE_D_ROAD_INFOS();
+
+			public List<D_ROAD_INFOS> createFromStreamEx(MemoryStream stream)
+			{
+				UInt32 size = stream.readUint32();
+				List<D_ROAD_INFOS> datas = new List<D_ROAD_INFOS>();
+
+				while(size > 0)
+				{
+					--size;
+					datas.Add(itemType.createFromStreamEx(stream));
+				};
+
+				return datas;
+			}
+
+			public void addToStreamEx(Bundle stream, List<D_ROAD_INFOS> v)
+			{
+				stream.writeUint32((UInt32)v.Count);
+				for(int i=0; i<v.Count; ++i)
+				{
+					itemType.addToStreamEx(stream, v[i]);
+				};
+			}
+		}
+
+		public D_ROAD_INFOS_LIST createFromStreamEx(MemoryStream stream)
+		{
+			D_ROAD_INFOS_LIST datas = new D_ROAD_INFOS_LIST();
+			datas.values = values_DataType.createFromStreamEx(stream);
+			return datas;
+		}
+
+		public void addToStreamEx(Bundle stream, D_ROAD_INFOS_LIST v)
+		{
+			values_DataType.addToStreamEx(stream, v.values);
+		}
+	}
+
+
+
+	public class DATATYPE_D_HERO_INFOS : DATATYPE_BASE
+	{
+		public D_HERO_INFOS createFromStreamEx(MemoryStream stream)
+		{
+			D_HERO_INFOS datas = new D_HERO_INFOS();
+			datas.id = stream.readInt32();
+			datas.name = stream.readString();
+			datas.nick_name = stream.readUnicode();
+			datas.race = stream.readInt32();
+			datas.race_desc = stream.readUnicode();
+			datas.skill_1 = stream.readInt32();
+			datas.skill_2 = stream.readInt32();
+			datas.skill_3 = stream.readInt32();
+			datas.skill_4 = stream.readInt32();
+			datas.hero_hp = stream.readInt32();
+			datas.hero_mp = stream.readInt32();
+			datas.hero_strength = stream.readInt32();
+			datas.hero_agile = stream.readInt32();
+			datas.hero_intelligence = stream.readInt32();
+			datas.hero_attacktime = stream.readInt32();
+			datas.hero_speed = stream.readInt32();
+			datas.hero_attackfront = stream.readInt32();
+			datas.hero_attackback = stream.readInt32();
+			datas.hero_skillfront = stream.readInt32();
+			datas.hero_skillback = stream.readInt32();
+			datas.hero_scope = stream.readInt32();
+			datas.hero_attack = stream.readInt32();
+			datas.hero_armor = stream.readInt32();
+			datas.hero_unarmor = stream.readInt32();
+			datas.hero_magic = stream.readInt32();
+			datas.hero_magicresist = stream.readInt32();
+			datas.hero_hprestored = stream.readInt32();
+			datas.hero_mprestored = stream.readInt32();
+			datas.hero_crit = stream.readInt32();
+			datas.hero_uncrit = stream.readInt32();
+			datas.hero_critunmber = stream.readInt32();
+			datas.hero_evade = stream.readInt32();
+			datas.hero_unevade = stream.readInt32();
+			datas.hero_parry = stream.readInt32();
+			datas.hero_unparry = stream.readInt32();
+			datas.hero_parrynumber = stream.readInt32();
+			datas.hero_xixue = stream.readInt32();
+			datas.atk_power = stream.readInt32();
+			datas.hurt_power = stream.readInt32();
+			datas.kill_power = stream.readInt32();
+			datas.hero_energe = stream.readInt32();
+			datas.head_icon = stream.readString();
+			return datas;
+		}
+
+		public void addToStreamEx(Bundle stream, D_HERO_INFOS v)
+		{
+			stream.writeInt32(v.id);
+			stream.writeString(v.name);
+			stream.writeUnicode(v.nick_name);
+			stream.writeInt32(v.race);
+			stream.writeUnicode(v.race_desc);
+			stream.writeInt32(v.skill_1);
+			stream.writeInt32(v.skill_2);
+			stream.writeInt32(v.skill_3);
+			stream.writeInt32(v.skill_4);
+			stream.writeInt32(v.hero_hp);
+			stream.writeInt32(v.hero_mp);
+			stream.writeInt32(v.hero_strength);
+			stream.writeInt32(v.hero_agile);
+			stream.writeInt32(v.hero_intelligence);
+			stream.writeInt32(v.hero_attacktime);
+			stream.writeInt32(v.hero_speed);
+			stream.writeInt32(v.hero_attackfront);
+			stream.writeInt32(v.hero_attackback);
+			stream.writeInt32(v.hero_skillfront);
+			stream.writeInt32(v.hero_skillback);
+			stream.writeInt32(v.hero_scope);
+			stream.writeInt32(v.hero_attack);
+			stream.writeInt32(v.hero_armor);
+			stream.writeInt32(v.hero_unarmor);
+			stream.writeInt32(v.hero_magic);
+			stream.writeInt32(v.hero_magicresist);
+			stream.writeInt32(v.hero_hprestored);
+			stream.writeInt32(v.hero_mprestored);
+			stream.writeInt32(v.hero_crit);
+			stream.writeInt32(v.hero_uncrit);
+			stream.writeInt32(v.hero_critunmber);
+			stream.writeInt32(v.hero_evade);
+			stream.writeInt32(v.hero_unevade);
+			stream.writeInt32(v.hero_parry);
+			stream.writeInt32(v.hero_unparry);
+			stream.writeInt32(v.hero_parrynumber);
+			stream.writeInt32(v.hero_xixue);
+			stream.writeInt32(v.atk_power);
+			stream.writeInt32(v.hurt_power);
+			stream.writeInt32(v.kill_power);
+			stream.writeInt32(v.hero_energe);
+			stream.writeString(v.head_icon);
+		}
+	}
+
+
+
+	public class DATATYPE_D_HERO_INFOS_LIST : DATATYPE_BASE
+	{
+		private DATATYPE__D_HERO_INFOS_LIST_values_ArrayType_ChildArray values_DataType = new DATATYPE__D_HERO_INFOS_LIST_values_ArrayType_ChildArray();
+
+		public class DATATYPE__D_HERO_INFOS_LIST_values_ArrayType_ChildArray : DATATYPE_BASE
+		{
+			private DATATYPE_D_HERO_INFOS itemType = new DATATYPE_D_HERO_INFOS();
+
+			public List<D_HERO_INFOS> createFromStreamEx(MemoryStream stream)
+			{
+				UInt32 size = stream.readUint32();
+				List<D_HERO_INFOS> datas = new List<D_HERO_INFOS>();
+
+				while(size > 0)
+				{
+					--size;
+					datas.Add(itemType.createFromStreamEx(stream));
+				};
+
+				return datas;
+			}
+
+			public void addToStreamEx(Bundle stream, List<D_HERO_INFOS> v)
+			{
+				stream.writeUint32((UInt32)v.Count);
+				for(int i=0; i<v.Count; ++i)
+				{
+					itemType.addToStreamEx(stream, v[i]);
+				};
+			}
+		}
+
+		public D_HERO_INFOS_LIST createFromStreamEx(MemoryStream stream)
+		{
+			D_HERO_INFOS_LIST datas = new D_HERO_INFOS_LIST();
+			datas.values = values_DataType.createFromStreamEx(stream);
+			return datas;
+		}
+
+		public void addToStreamEx(Bundle stream, D_HERO_INFOS_LIST v)
+		{
+			values_DataType.addToStreamEx(stream, v.values);
+		}
+	}
+
+
+
+	public class DATATYPE_D_PROPS_INFOS : DATATYPE_BASE
+	{
+		public D_PROPS_INFOS createFromStreamEx(MemoryStream stream)
+		{
+			D_PROPS_INFOS datas = new D_PROPS_INFOS();
+			datas.prop_id = stream.readInt32();
+			datas.prop_name = stream.readUnicode();
+			datas.prop_icon = stream.readString();
+			datas.prop_type = stream.readInt32();
+			datas.prop_quality = stream.readInt32();
+			datas.prop_order = stream.readInt32();
+			datas.prop_max = stream.readInt32();
+			datas.prop_resale = stream.readInt32();
+			datas.prop_diamond = stream.readInt32();
+			datas.prop_hanbing = stream.readInt32();
+			datas.prop_moba = stream.readInt32();
+			datas.prop_jjc = stream.readInt32();
+			datas.prop_maoxian = stream.readInt32();
+			datas.prop_describe = stream.readUnicode();
+			datas.prop_function = stream.readInt32();
+			datas.prop_parameters1 = stream.readInt32();
+			datas.prop_parameters2 = stream.readInt32();
+			datas.prop_parameters3 = stream.readInt32();
+			datas.prop_parameters4 = stream.readInt32();
+			datas.prop_parameters5 = stream.readInt32();
+			datas.prop_parameters6 = stream.readInt32();
+			datas.prop_drop1 = stream.readInt32();
+			datas.prop_drop2 = stream.readInt32();
+			datas.prop_drop3 = stream.readInt32();
+			datas.prop_drop4 = stream.readInt32();
+			datas.prop_gm = stream.readInt32();
+			datas.prop_buy = stream.readInt32();
+			return datas;
+		}
+
+		public void addToStreamEx(Bundle stream, D_PROPS_INFOS v)
+		{
+			stream.writeInt32(v.prop_id);
+			stream.writeUnicode(v.prop_name);
+			stream.writeString(v.prop_icon);
+			stream.writeInt32(v.prop_type);
+			stream.writeInt32(v.prop_quality);
+			stream.writeInt32(v.prop_order);
+			stream.writeInt32(v.prop_max);
+			stream.writeInt32(v.prop_resale);
+			stream.writeInt32(v.prop_diamond);
+			stream.writeInt32(v.prop_hanbing);
+			stream.writeInt32(v.prop_moba);
+			stream.writeInt32(v.prop_jjc);
+			stream.writeInt32(v.prop_maoxian);
+			stream.writeUnicode(v.prop_describe);
+			stream.writeInt32(v.prop_function);
+			stream.writeInt32(v.prop_parameters1);
+			stream.writeInt32(v.prop_parameters2);
+			stream.writeInt32(v.prop_parameters3);
+			stream.writeInt32(v.prop_parameters4);
+			stream.writeInt32(v.prop_parameters5);
+			stream.writeInt32(v.prop_parameters6);
+			stream.writeInt32(v.prop_drop1);
+			stream.writeInt32(v.prop_drop2);
+			stream.writeInt32(v.prop_drop3);
+			stream.writeInt32(v.prop_drop4);
+			stream.writeInt32(v.prop_gm);
+			stream.writeInt32(v.prop_buy);
+		}
+	}
+
+
+
+	public class DATATYPE_D_PROPS_INFOS_LIST : DATATYPE_BASE
+	{
+		private DATATYPE__D_PROPS_INFOS_LIST_values_ArrayType_ChildArray values_DataType = new DATATYPE__D_PROPS_INFOS_LIST_values_ArrayType_ChildArray();
+
+		public class DATATYPE__D_PROPS_INFOS_LIST_values_ArrayType_ChildArray : DATATYPE_BASE
+		{
+			private DATATYPE_D_PROPS_INFOS itemType = new DATATYPE_D_PROPS_INFOS();
+
+			public List<D_PROPS_INFOS> createFromStreamEx(MemoryStream stream)
+			{
+				UInt32 size = stream.readUint32();
+				List<D_PROPS_INFOS> datas = new List<D_PROPS_INFOS>();
+
+				while(size > 0)
+				{
+					--size;
+					datas.Add(itemType.createFromStreamEx(stream));
+				};
+
+				return datas;
+			}
+
+			public void addToStreamEx(Bundle stream, List<D_PROPS_INFOS> v)
+			{
+				stream.writeUint32((UInt32)v.Count);
+				for(int i=0; i<v.Count; ++i)
+				{
+					itemType.addToStreamEx(stream, v[i]);
+				};
+			}
+		}
+
+		public D_PROPS_INFOS_LIST createFromStreamEx(MemoryStream stream)
+		{
+			D_PROPS_INFOS_LIST datas = new D_PROPS_INFOS_LIST();
+			datas.values = values_DataType.createFromStreamEx(stream);
+			return datas;
+		}
+
+		public void addToStreamEx(Bundle stream, D_PROPS_INFOS_LIST v)
+		{
+			values_DataType.addToStreamEx(stream, v.values);
+		}
+	}
+
+
+
+	public class DATATYPE_D_SHOP_INFOS : DATATYPE_BASE
+	{
+		public D_SHOP_INFOS createFromStreamEx(MemoryStream stream)
+		{
+			D_SHOP_INFOS datas = new D_SHOP_INFOS();
+			datas.shop_id = stream.readInt32();
+			datas.shop_des = stream.readUnicode();
+			datas.shop_refreshstart = stream.readInt32();
+			datas.shop_refreshtime = stream.readInt32();
+			datas.shop_needid = stream.readInt32();
+			datas.shop_needdes = stream.readUnicode();
+			datas.shop_amount = stream.readInt32();
+			datas.shop_refreshtime1 = stream.readString();
+			datas.open_lv = stream.readInt32();
+			return datas;
+		}
+
+		public void addToStreamEx(Bundle stream, D_SHOP_INFOS v)
+		{
+			stream.writeInt32(v.shop_id);
+			stream.writeUnicode(v.shop_des);
+			stream.writeInt32(v.shop_refreshstart);
+			stream.writeInt32(v.shop_refreshtime);
+			stream.writeInt32(v.shop_needid);
+			stream.writeUnicode(v.shop_needdes);
+			stream.writeInt32(v.shop_amount);
+			stream.writeString(v.shop_refreshtime1);
+			stream.writeInt32(v.open_lv);
+		}
+	}
+
+
+
+	public class DATATYPE_D_SHOP_INFOS_LIST : DATATYPE_BASE
+	{
+		private DATATYPE__D_SHOP_INFOS_LIST_values_ArrayType_ChildArray values_DataType = new DATATYPE__D_SHOP_INFOS_LIST_values_ArrayType_ChildArray();
+
+		public class DATATYPE__D_SHOP_INFOS_LIST_values_ArrayType_ChildArray : DATATYPE_BASE
+		{
+			private DATATYPE_D_SHOP_INFOS itemType = new DATATYPE_D_SHOP_INFOS();
+
+			public List<D_SHOP_INFOS> createFromStreamEx(MemoryStream stream)
+			{
+				UInt32 size = stream.readUint32();
+				List<D_SHOP_INFOS> datas = new List<D_SHOP_INFOS>();
+
+				while(size > 0)
+				{
+					--size;
+					datas.Add(itemType.createFromStreamEx(stream));
+				};
+
+				return datas;
+			}
+
+			public void addToStreamEx(Bundle stream, List<D_SHOP_INFOS> v)
+			{
+				stream.writeUint32((UInt32)v.Count);
+				for(int i=0; i<v.Count; ++i)
+				{
+					itemType.addToStreamEx(stream, v[i]);
+				};
+			}
+		}
+
+		public D_SHOP_INFOS_LIST createFromStreamEx(MemoryStream stream)
+		{
+			D_SHOP_INFOS_LIST datas = new D_SHOP_INFOS_LIST();
+			datas.values = values_DataType.createFromStreamEx(stream);
+			return datas;
+		}
+
+		public void addToStreamEx(Bundle stream, D_SHOP_INFOS_LIST v)
+		{
+			values_DataType.addToStreamEx(stream, v.values);
+		}
+	}
+
+
+
+	public class DATATYPE_D_SKILL_INFOS : DATATYPE_BASE
+	{
+		public D_SKILL_INFOS createFromStreamEx(MemoryStream stream)
+		{
+			D_SKILL_INFOS datas = new D_SKILL_INFOS();
+			datas.id = stream.readInt32();
+			datas.name = stream.readUnicode();
+			datas.skill_icon = stream.readString();
+			datas.skill_damage_chushi = stream.readInt32();
+			datas.skill_damage_growth = stream.readInt32();
+			datas.skill_ad_chushi = stream.readInt32();
+			datas.skill_ad_growth = stream.readInt32();
+			datas.skill_ap_chushi = stream.readInt32();
+			datas.skill_ap_growth = stream.readInt32();
+			datas.skill_type = stream.readInt32();
+			datas.skill_ongoing = stream.readInt32();
+			datas.skill_sing_time = stream.readInt32();
+			datas.skill_cutdown = stream.readInt32();
+			datas.skill_cutdownif = stream.readInt32();
+			datas.skill_cd = stream.readInt32();
+			datas.attack_distance = stream.readInt32();
+			datas.aoe_radius = stream.readInt32();
+			return datas;
+		}
+
+		public void addToStreamEx(Bundle stream, D_SKILL_INFOS v)
+		{
+			stream.writeInt32(v.id);
+			stream.writeUnicode(v.name);
+			stream.writeString(v.skill_icon);
+			stream.writeInt32(v.skill_damage_chushi);
+			stream.writeInt32(v.skill_damage_growth);
+			stream.writeInt32(v.skill_ad_chushi);
+			stream.writeInt32(v.skill_ad_growth);
+			stream.writeInt32(v.skill_ap_chushi);
+			stream.writeInt32(v.skill_ap_growth);
+			stream.writeInt32(v.skill_type);
+			stream.writeInt32(v.skill_ongoing);
+			stream.writeInt32(v.skill_sing_time);
+			stream.writeInt32(v.skill_cutdown);
+			stream.writeInt32(v.skill_cutdownif);
+			stream.writeInt32(v.skill_cd);
+			stream.writeInt32(v.attack_distance);
+			stream.writeInt32(v.aoe_radius);
+		}
+	}
+
+
+
+	public class DATATYPE_D_SKILL_INFOS_LIST : DATATYPE_BASE
+	{
+		private DATATYPE__D_SKILL_INFOS_LIST_values_ArrayType_ChildArray values_DataType = new DATATYPE__D_SKILL_INFOS_LIST_values_ArrayType_ChildArray();
+
+		public class DATATYPE__D_SKILL_INFOS_LIST_values_ArrayType_ChildArray : DATATYPE_BASE
+		{
+			private DATATYPE_D_SKILL_INFOS itemType = new DATATYPE_D_SKILL_INFOS();
+
+			public List<D_SKILL_INFOS> createFromStreamEx(MemoryStream stream)
+			{
+				UInt32 size = stream.readUint32();
+				List<D_SKILL_INFOS> datas = new List<D_SKILL_INFOS>();
+
+				while(size > 0)
+				{
+					--size;
+					datas.Add(itemType.createFromStreamEx(stream));
+				};
+
+				return datas;
+			}
+
+			public void addToStreamEx(Bundle stream, List<D_SKILL_INFOS> v)
+			{
+				stream.writeUint32((UInt32)v.Count);
+				for(int i=0; i<v.Count; ++i)
+				{
+					itemType.addToStreamEx(stream, v[i]);
+				};
+			}
+		}
+
+		public D_SKILL_INFOS_LIST createFromStreamEx(MemoryStream stream)
+		{
+			D_SKILL_INFOS_LIST datas = new D_SKILL_INFOS_LIST();
+			datas.values = values_DataType.createFromStreamEx(stream);
+			return datas;
+		}
+
+		public void addToStreamEx(Bundle stream, D_SKILL_INFOS_LIST v)
+		{
+			values_DataType.addToStreamEx(stream, v.values);
+		}
+	}
+
+
+
+	public class DATATYPE_D_TEAM_INFOS : DATATYPE_BASE
+	{
+		public D_TEAM_INFOS createFromStreamEx(MemoryStream stream)
+		{
+			D_TEAM_INFOS datas = new D_TEAM_INFOS();
+			datas.id = stream.readInt32();
+			datas.team_id = stream.readInt32();
+			datas.position_x = stream.readFloat();
+			datas.position_y = stream.readFloat();
+			datas.position_z = stream.readFloat();
+			datas.direction_x = stream.readFloat();
+			datas.direction_y = stream.readFloat();
+			datas.direction_z = stream.readFloat();
+			return datas;
+		}
+
+		public void addToStreamEx(Bundle stream, D_TEAM_INFOS v)
+		{
+			stream.writeInt32(v.id);
+			stream.writeInt32(v.team_id);
+			stream.writeFloat(v.position_x);
+			stream.writeFloat(v.position_y);
+			stream.writeFloat(v.position_z);
+			stream.writeFloat(v.direction_x);
+			stream.writeFloat(v.direction_y);
+			stream.writeFloat(v.direction_z);
+		}
+	}
+
+
+
+	public class DATATYPE_D_TEAM_INFOS_LIST : DATATYPE_BASE
+	{
+		private DATATYPE__D_TEAM_INFOS_LIST_values_ArrayType_ChildArray values_DataType = new DATATYPE__D_TEAM_INFOS_LIST_values_ArrayType_ChildArray();
+
+		public class DATATYPE__D_TEAM_INFOS_LIST_values_ArrayType_ChildArray : DATATYPE_BASE
+		{
+			private DATATYPE_D_TEAM_INFOS itemType = new DATATYPE_D_TEAM_INFOS();
+
+			public List<D_TEAM_INFOS> createFromStreamEx(MemoryStream stream)
+			{
+				UInt32 size = stream.readUint32();
+				List<D_TEAM_INFOS> datas = new List<D_TEAM_INFOS>();
+
+				while(size > 0)
+				{
+					--size;
+					datas.Add(itemType.createFromStreamEx(stream));
+				};
+
+				return datas;
+			}
+
+			public void addToStreamEx(Bundle stream, List<D_TEAM_INFOS> v)
+			{
+				stream.writeUint32((UInt32)v.Count);
+				for(int i=0; i<v.Count; ++i)
+				{
+					itemType.addToStreamEx(stream, v[i]);
+				};
+			}
+		}
+
+		public D_TEAM_INFOS_LIST createFromStreamEx(MemoryStream stream)
+		{
+			D_TEAM_INFOS_LIST datas = new D_TEAM_INFOS_LIST();
+			datas.values = values_DataType.createFromStreamEx(stream);
+			return datas;
+		}
+
+		public void addToStreamEx(Bundle stream, D_TEAM_INFOS_LIST v)
+		{
+			values_DataType.addToStreamEx(stream, v.values);
+		}
+	}
+
+
 }
