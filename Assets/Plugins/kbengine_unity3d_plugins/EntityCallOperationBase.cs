@@ -36,6 +36,42 @@ namespace KBEngine
 			type = ENTITYCALL_TYPE.ENTITYCALL_TYPE_CELL;
 		}
 
+		public void reqGamePause()
+		{
+			Bundle pBundle = newCall("reqGamePause", entityComponentPropertyID);
+			if(pBundle == null)
+				return;
+
+			sendCall(null);
+		}
+
+		public void reqGameRunning()
+		{
+			Bundle pBundle = newCall("reqGameRunning", entityComponentPropertyID);
+			if(pBundle == null)
+				return;
+
+			sendCall(null);
+		}
+
+		public void reqHeroConf()
+		{
+			Bundle pBundle = newCall("reqHeroConf", entityComponentPropertyID);
+			if(pBundle == null)
+				return;
+
+			sendCall(null);
+		}
+
+		public void reqPropsConf()
+		{
+			Bundle pBundle = newCall("reqPropsConf", entityComponentPropertyID);
+			if(pBundle == null)
+				return;
+
+			sendCall(null);
+		}
+
 		public void reqReady(Byte arg1)
 		{
 			Bundle pBundle = newCall("reqReady", entityComponentPropertyID);
@@ -43,6 +79,42 @@ namespace KBEngine
 				return;
 
 			bundle.writeUint8(arg1);
+			sendCall(null);
+		}
+
+		public void reqRoadConf()
+		{
+			Bundle pBundle = newCall("reqRoadConf", entityComponentPropertyID);
+			if(pBundle == null)
+				return;
+
+			sendCall(null);
+		}
+
+		public void reqShopConf()
+		{
+			Bundle pBundle = newCall("reqShopConf", entityComponentPropertyID);
+			if(pBundle == null)
+				return;
+
+			sendCall(null);
+		}
+
+		public void reqSkillConf()
+		{
+			Bundle pBundle = newCall("reqSkillConf", entityComponentPropertyID);
+			if(pBundle == null)
+				return;
+
+			sendCall(null);
+		}
+
+		public void reqTeamConf()
+		{
+			Bundle pBundle = newCall("reqTeamConf", entityComponentPropertyID);
+			if(pBundle == null)
+				return;
+
 			sendCall(null);
 		}
 

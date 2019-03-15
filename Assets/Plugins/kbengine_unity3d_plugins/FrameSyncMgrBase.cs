@@ -27,6 +27,14 @@ namespace KBEngine
 		{
 		}
 
+		public override void onComponentsEnterworld()
+		{
+		}
+
+		public override void onComponentsLeaveworld()
+		{
+		}
+
 		public override void onGetBase()
 		{
 			baseEntityCall = new EntityBaseEntityCall_FrameSyncMgrBase(id, className);
@@ -67,14 +75,21 @@ namespace KBEngine
 			UInt16 methodUtype = 0;
 			UInt16 componentPropertyUType = 0;
 
-			if(sm.useMethodDescrAlias)
+			if(sm.usePropertyDescrAlias)
 			{
 				componentPropertyUType = stream.readUint8();
-				methodUtype = stream.readUint8();
 			}
 			else
 			{
 				componentPropertyUType = stream.readUint16();
+			}
+
+			if(sm.useMethodDescrAlias)
+			{
+				methodUtype = stream.readUint8();
+			}
+			else
+			{
 				methodUtype = stream.readUint16();
 			}
 

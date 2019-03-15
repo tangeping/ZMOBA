@@ -22,7 +22,7 @@ namespace KBEngine {
         /**
          *  @brief Index of the team initial entity.
          */
-        [HideInInspector]
+        //[HideInInspector]
         public int teamID = -1;
         /**
          *  @brief Basic info about the owner of this behaviour.

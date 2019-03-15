@@ -59,7 +59,7 @@ namespace KBEngine
 
             for (var n = 0; n < this.Weights.Length; n++)
             {
-                this.Weights[n] = 1;
+                this.Weights[n] = DefaultCost;
             }
         }
 
@@ -102,8 +102,8 @@ namespace KBEngine
                 return nodeIndex;
             }
             FPVector relatiPos = p - this.Orgin;
-            nodeIndex.x = (int)(relatiPos.x / this.GetWidth());
-            nodeIndex.y = (int)(relatiPos.z / this.GetHeight());
+            nodeIndex.x = FPMath.Floor(relatiPos.x / this.GetWidth()).AsInt();
+            nodeIndex.y = FPMath.Floor(relatiPos.z / this.GetHeight()).AsInt();
             return nodeIndex;
         }
 
@@ -115,7 +115,7 @@ namespace KBEngine
             }
             FP width = (x + (FP)0.5f) * this.GetWidth();
             FP height = (y + (FP)0.5f) * this.GetHeight();
-            return new FPVector(width,0, height);
+            return new FPVector(width,0, height) + this.Orgin;
         }
 
         /// <summary>

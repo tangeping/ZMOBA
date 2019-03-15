@@ -384,7 +384,7 @@ namespace KBEngine
 
 			Method pOperation_readyResult = new Method();
 			pOperation_readyResult.name = "readyResult";
-			pOperation_readyResult.methodUtype = 6;
+			pOperation_readyResult.methodUtype = 14;
 			pOperation_readyResult.aliasID = 1;
 			pOperation_readyResult.args = pOperation_readyResult_args;
 
@@ -392,7 +392,157 @@ namespace KBEngine
 			pOperationModule.useMethodDescrAlias = true;
 			pOperationModule.idmethods[(UInt16)pOperation_readyResult.aliasID] = pOperation_readyResult;
 
-			//Dbg.DEBUG_MSG("EntityDef::initScriptModules: add(Operation), method(readyResult / 6).");
+			//Dbg.DEBUG_MSG("EntityDef::initScriptModules: add(Operation), method(readyResult / 14).");
+
+			List<DATATYPE_BASE> pOperation_rspHeroInfo_args = new List<DATATYPE_BASE>();
+			pOperation_rspHeroInfo_args.Add(EntityDef.id2datatypes[35]);
+
+			Method pOperation_rspHeroInfo = new Method();
+			pOperation_rspHeroInfo.name = "rspHeroInfo";
+			pOperation_rspHeroInfo.methodUtype = 16;
+			pOperation_rspHeroInfo.aliasID = 2;
+			pOperation_rspHeroInfo.args = pOperation_rspHeroInfo_args;
+
+			pOperationModule.methods["rspHeroInfo"] = pOperation_rspHeroInfo; 
+			pOperationModule.useMethodDescrAlias = true;
+			pOperationModule.idmethods[(UInt16)pOperation_rspHeroInfo.aliasID] = pOperation_rspHeroInfo;
+
+			//Dbg.DEBUG_MSG("EntityDef::initScriptModules: add(Operation), method(rspHeroInfo / 16).");
+
+			List<DATATYPE_BASE> pOperation_rspPropsInfo_args = new List<DATATYPE_BASE>();
+			pOperation_rspPropsInfo_args.Add(EntityDef.id2datatypes[38]);
+
+			Method pOperation_rspPropsInfo = new Method();
+			pOperation_rspPropsInfo.name = "rspPropsInfo";
+			pOperation_rspPropsInfo.methodUtype = 17;
+			pOperation_rspPropsInfo.aliasID = 3;
+			pOperation_rspPropsInfo.args = pOperation_rspPropsInfo_args;
+
+			pOperationModule.methods["rspPropsInfo"] = pOperation_rspPropsInfo; 
+			pOperationModule.useMethodDescrAlias = true;
+			pOperationModule.idmethods[(UInt16)pOperation_rspPropsInfo.aliasID] = pOperation_rspPropsInfo;
+
+			//Dbg.DEBUG_MSG("EntityDef::initScriptModules: add(Operation), method(rspPropsInfo / 17).");
+
+			List<DATATYPE_BASE> pOperation_rspRoadInfo_args = new List<DATATYPE_BASE>();
+			pOperation_rspRoadInfo_args.Add(EntityDef.id2datatypes[32]);
+
+			Method pOperation_rspRoadInfo = new Method();
+			pOperation_rspRoadInfo.name = "rspRoadInfo";
+			pOperation_rspRoadInfo.methodUtype = 15;
+			pOperation_rspRoadInfo.aliasID = 4;
+			pOperation_rspRoadInfo.args = pOperation_rspRoadInfo_args;
+
+			pOperationModule.methods["rspRoadInfo"] = pOperation_rspRoadInfo; 
+			pOperationModule.useMethodDescrAlias = true;
+			pOperationModule.idmethods[(UInt16)pOperation_rspRoadInfo.aliasID] = pOperation_rspRoadInfo;
+
+			//Dbg.DEBUG_MSG("EntityDef::initScriptModules: add(Operation), method(rspRoadInfo / 15).");
+
+			List<DATATYPE_BASE> pOperation_rspShopInfo_args = new List<DATATYPE_BASE>();
+			pOperation_rspShopInfo_args.Add(EntityDef.id2datatypes[41]);
+
+			Method pOperation_rspShopInfo = new Method();
+			pOperation_rspShopInfo.name = "rspShopInfo";
+			pOperation_rspShopInfo.methodUtype = 18;
+			pOperation_rspShopInfo.aliasID = 5;
+			pOperation_rspShopInfo.args = pOperation_rspShopInfo_args;
+
+			pOperationModule.methods["rspShopInfo"] = pOperation_rspShopInfo; 
+			pOperationModule.useMethodDescrAlias = true;
+			pOperationModule.idmethods[(UInt16)pOperation_rspShopInfo.aliasID] = pOperation_rspShopInfo;
+
+			//Dbg.DEBUG_MSG("EntityDef::initScriptModules: add(Operation), method(rspShopInfo / 18).");
+
+			List<DATATYPE_BASE> pOperation_rspSkillInfo_args = new List<DATATYPE_BASE>();
+			pOperation_rspSkillInfo_args.Add(EntityDef.id2datatypes[44]);
+
+			Method pOperation_rspSkillInfo = new Method();
+			pOperation_rspSkillInfo.name = "rspSkillInfo";
+			pOperation_rspSkillInfo.methodUtype = 19;
+			pOperation_rspSkillInfo.aliasID = 6;
+			pOperation_rspSkillInfo.args = pOperation_rspSkillInfo_args;
+
+			pOperationModule.methods["rspSkillInfo"] = pOperation_rspSkillInfo; 
+			pOperationModule.useMethodDescrAlias = true;
+			pOperationModule.idmethods[(UInt16)pOperation_rspSkillInfo.aliasID] = pOperation_rspSkillInfo;
+
+			//Dbg.DEBUG_MSG("EntityDef::initScriptModules: add(Operation), method(rspSkillInfo / 19).");
+
+			List<DATATYPE_BASE> pOperation_rspTeamInfo_args = new List<DATATYPE_BASE>();
+			pOperation_rspTeamInfo_args.Add(EntityDef.id2datatypes[47]);
+
+			Method pOperation_rspTeamInfo = new Method();
+			pOperation_rspTeamInfo.name = "rspTeamInfo";
+			pOperation_rspTeamInfo.methodUtype = 20;
+			pOperation_rspTeamInfo.aliasID = 7;
+			pOperation_rspTeamInfo.args = pOperation_rspTeamInfo_args;
+
+			pOperationModule.methods["rspTeamInfo"] = pOperation_rspTeamInfo; 
+			pOperationModule.useMethodDescrAlias = true;
+			pOperationModule.idmethods[(UInt16)pOperation_rspTeamInfo.aliasID] = pOperation_rspTeamInfo;
+
+			//Dbg.DEBUG_MSG("EntityDef::initScriptModules: add(Operation), method(rspTeamInfo / 20).");
+
+			List<DATATYPE_BASE> pOperation_reqGamePause_args = new List<DATATYPE_BASE>();
+
+			Method pOperation_reqGamePause = new Method();
+			pOperation_reqGamePause.name = "reqGamePause";
+			pOperation_reqGamePause.methodUtype = 6;
+			pOperation_reqGamePause.aliasID = -1;
+			pOperation_reqGamePause.args = pOperation_reqGamePause_args;
+
+			pOperationModule.methods["reqGamePause"] = pOperation_reqGamePause; 
+			pOperationModule.cell_methods["reqGamePause"] = pOperation_reqGamePause;
+
+			pOperationModule.idcell_methods[pOperation_reqGamePause.methodUtype] = pOperation_reqGamePause;
+
+			//Dbg.DEBUG_MSG("EntityDef::initScriptModules: add(Operation), method(reqGamePause / 6).");
+
+			List<DATATYPE_BASE> pOperation_reqGameRunning_args = new List<DATATYPE_BASE>();
+
+			Method pOperation_reqGameRunning = new Method();
+			pOperation_reqGameRunning.name = "reqGameRunning";
+			pOperation_reqGameRunning.methodUtype = 7;
+			pOperation_reqGameRunning.aliasID = -1;
+			pOperation_reqGameRunning.args = pOperation_reqGameRunning_args;
+
+			pOperationModule.methods["reqGameRunning"] = pOperation_reqGameRunning; 
+			pOperationModule.cell_methods["reqGameRunning"] = pOperation_reqGameRunning;
+
+			pOperationModule.idcell_methods[pOperation_reqGameRunning.methodUtype] = pOperation_reqGameRunning;
+
+			//Dbg.DEBUG_MSG("EntityDef::initScriptModules: add(Operation), method(reqGameRunning / 7).");
+
+			List<DATATYPE_BASE> pOperation_reqHeroConf_args = new List<DATATYPE_BASE>();
+
+			Method pOperation_reqHeroConf = new Method();
+			pOperation_reqHeroConf.name = "reqHeroConf";
+			pOperation_reqHeroConf.methodUtype = 8;
+			pOperation_reqHeroConf.aliasID = -1;
+			pOperation_reqHeroConf.args = pOperation_reqHeroConf_args;
+
+			pOperationModule.methods["reqHeroConf"] = pOperation_reqHeroConf; 
+			pOperationModule.cell_methods["reqHeroConf"] = pOperation_reqHeroConf;
+
+			pOperationModule.idcell_methods[pOperation_reqHeroConf.methodUtype] = pOperation_reqHeroConf;
+
+			//Dbg.DEBUG_MSG("EntityDef::initScriptModules: add(Operation), method(reqHeroConf / 8).");
+
+			List<DATATYPE_BASE> pOperation_reqPropsConf_args = new List<DATATYPE_BASE>();
+
+			Method pOperation_reqPropsConf = new Method();
+			pOperation_reqPropsConf.name = "reqPropsConf";
+			pOperation_reqPropsConf.methodUtype = 9;
+			pOperation_reqPropsConf.aliasID = -1;
+			pOperation_reqPropsConf.args = pOperation_reqPropsConf_args;
+
+			pOperationModule.methods["reqPropsConf"] = pOperation_reqPropsConf; 
+			pOperationModule.cell_methods["reqPropsConf"] = pOperation_reqPropsConf;
+
+			pOperationModule.idcell_methods[pOperation_reqPropsConf.methodUtype] = pOperation_reqPropsConf;
+
+			//Dbg.DEBUG_MSG("EntityDef::initScriptModules: add(Operation), method(reqPropsConf / 9).");
 
 			List<DATATYPE_BASE> pOperation_reqReady_args = new List<DATATYPE_BASE>();
 			pOperation_reqReady_args.Add(EntityDef.id2datatypes[2]);
@@ -409,6 +559,66 @@ namespace KBEngine
 			pOperationModule.idcell_methods[pOperation_reqReady.methodUtype] = pOperation_reqReady;
 
 			//Dbg.DEBUG_MSG("EntityDef::initScriptModules: add(Operation), method(reqReady / 5).");
+
+			List<DATATYPE_BASE> pOperation_reqRoadConf_args = new List<DATATYPE_BASE>();
+
+			Method pOperation_reqRoadConf = new Method();
+			pOperation_reqRoadConf.name = "reqRoadConf";
+			pOperation_reqRoadConf.methodUtype = 10;
+			pOperation_reqRoadConf.aliasID = -1;
+			pOperation_reqRoadConf.args = pOperation_reqRoadConf_args;
+
+			pOperationModule.methods["reqRoadConf"] = pOperation_reqRoadConf; 
+			pOperationModule.cell_methods["reqRoadConf"] = pOperation_reqRoadConf;
+
+			pOperationModule.idcell_methods[pOperation_reqRoadConf.methodUtype] = pOperation_reqRoadConf;
+
+			//Dbg.DEBUG_MSG("EntityDef::initScriptModules: add(Operation), method(reqRoadConf / 10).");
+
+			List<DATATYPE_BASE> pOperation_reqShopConf_args = new List<DATATYPE_BASE>();
+
+			Method pOperation_reqShopConf = new Method();
+			pOperation_reqShopConf.name = "reqShopConf";
+			pOperation_reqShopConf.methodUtype = 11;
+			pOperation_reqShopConf.aliasID = -1;
+			pOperation_reqShopConf.args = pOperation_reqShopConf_args;
+
+			pOperationModule.methods["reqShopConf"] = pOperation_reqShopConf; 
+			pOperationModule.cell_methods["reqShopConf"] = pOperation_reqShopConf;
+
+			pOperationModule.idcell_methods[pOperation_reqShopConf.methodUtype] = pOperation_reqShopConf;
+
+			//Dbg.DEBUG_MSG("EntityDef::initScriptModules: add(Operation), method(reqShopConf / 11).");
+
+			List<DATATYPE_BASE> pOperation_reqSkillConf_args = new List<DATATYPE_BASE>();
+
+			Method pOperation_reqSkillConf = new Method();
+			pOperation_reqSkillConf.name = "reqSkillConf";
+			pOperation_reqSkillConf.methodUtype = 12;
+			pOperation_reqSkillConf.aliasID = -1;
+			pOperation_reqSkillConf.args = pOperation_reqSkillConf_args;
+
+			pOperationModule.methods["reqSkillConf"] = pOperation_reqSkillConf; 
+			pOperationModule.cell_methods["reqSkillConf"] = pOperation_reqSkillConf;
+
+			pOperationModule.idcell_methods[pOperation_reqSkillConf.methodUtype] = pOperation_reqSkillConf;
+
+			//Dbg.DEBUG_MSG("EntityDef::initScriptModules: add(Operation), method(reqSkillConf / 12).");
+
+			List<DATATYPE_BASE> pOperation_reqTeamConf_args = new List<DATATYPE_BASE>();
+
+			Method pOperation_reqTeamConf = new Method();
+			pOperation_reqTeamConf.name = "reqTeamConf";
+			pOperation_reqTeamConf.methodUtype = 13;
+			pOperation_reqTeamConf.aliasID = -1;
+			pOperation_reqTeamConf.args = pOperation_reqTeamConf_args;
+
+			pOperationModule.methods["reqTeamConf"] = pOperation_reqTeamConf; 
+			pOperationModule.cell_methods["reqTeamConf"] = pOperation_reqTeamConf;
+
+			pOperationModule.idcell_methods[pOperation_reqTeamConf.methodUtype] = pOperation_reqTeamConf;
+
+			//Dbg.DEBUG_MSG("EntityDef::initScriptModules: add(Operation), method(reqTeamConf / 13).");
 
 		}
 
@@ -701,18 +911,115 @@ namespace KBEngine
 
 			{
 				UInt16 utype = 31;
-				string typeName = "AnonymousArray_31";
-				string name = "ENTITY_COMPONENT";
-				DATATYPE_BASE val = null;
-				EntityDef.datatypes.TryGetValue(name, out val);
-				EntityDef.datatypes[typeName] = val;
+				string typeName = "D_ROAD_INFOS";
+				DATATYPE_D_ROAD_INFOS datatype = new DATATYPE_D_ROAD_INFOS();
+				EntityDef.datatypes[typeName] = datatype;
 				EntityDef.id2datatypes[utype] = EntityDef.datatypes[typeName];
 				EntityDef.datatype2id[typeName] = utype;
 			}
 
 			{
 				UInt16 utype = 32;
-				string typeName = "AnonymousArray_32";
+				string typeName = "D_ROAD_INFOS_LIST";
+				DATATYPE_D_ROAD_INFOS_LIST datatype = new DATATYPE_D_ROAD_INFOS_LIST();
+				EntityDef.datatypes[typeName] = datatype;
+				EntityDef.id2datatypes[utype] = EntityDef.datatypes[typeName];
+				EntityDef.datatype2id[typeName] = utype;
+			}
+
+			{
+				UInt16 utype = 34;
+				string typeName = "D_HERO_INFOS";
+				DATATYPE_D_HERO_INFOS datatype = new DATATYPE_D_HERO_INFOS();
+				EntityDef.datatypes[typeName] = datatype;
+				EntityDef.id2datatypes[utype] = EntityDef.datatypes[typeName];
+				EntityDef.datatype2id[typeName] = utype;
+			}
+
+			{
+				UInt16 utype = 35;
+				string typeName = "D_HERO_INFOS_LIST";
+				DATATYPE_D_HERO_INFOS_LIST datatype = new DATATYPE_D_HERO_INFOS_LIST();
+				EntityDef.datatypes[typeName] = datatype;
+				EntityDef.id2datatypes[utype] = EntityDef.datatypes[typeName];
+				EntityDef.datatype2id[typeName] = utype;
+			}
+
+			{
+				UInt16 utype = 37;
+				string typeName = "D_PROPS_INFOS";
+				DATATYPE_D_PROPS_INFOS datatype = new DATATYPE_D_PROPS_INFOS();
+				EntityDef.datatypes[typeName] = datatype;
+				EntityDef.id2datatypes[utype] = EntityDef.datatypes[typeName];
+				EntityDef.datatype2id[typeName] = utype;
+			}
+
+			{
+				UInt16 utype = 38;
+				string typeName = "D_PROPS_INFOS_LIST";
+				DATATYPE_D_PROPS_INFOS_LIST datatype = new DATATYPE_D_PROPS_INFOS_LIST();
+				EntityDef.datatypes[typeName] = datatype;
+				EntityDef.id2datatypes[utype] = EntityDef.datatypes[typeName];
+				EntityDef.datatype2id[typeName] = utype;
+			}
+
+			{
+				UInt16 utype = 40;
+				string typeName = "D_SHOP_INFOS";
+				DATATYPE_D_SHOP_INFOS datatype = new DATATYPE_D_SHOP_INFOS();
+				EntityDef.datatypes[typeName] = datatype;
+				EntityDef.id2datatypes[utype] = EntityDef.datatypes[typeName];
+				EntityDef.datatype2id[typeName] = utype;
+			}
+
+			{
+				UInt16 utype = 41;
+				string typeName = "D_SHOP_INFOS_LIST";
+				DATATYPE_D_SHOP_INFOS_LIST datatype = new DATATYPE_D_SHOP_INFOS_LIST();
+				EntityDef.datatypes[typeName] = datatype;
+				EntityDef.id2datatypes[utype] = EntityDef.datatypes[typeName];
+				EntityDef.datatype2id[typeName] = utype;
+			}
+
+			{
+				UInt16 utype = 43;
+				string typeName = "D_SKILL_INFOS";
+				DATATYPE_D_SKILL_INFOS datatype = new DATATYPE_D_SKILL_INFOS();
+				EntityDef.datatypes[typeName] = datatype;
+				EntityDef.id2datatypes[utype] = EntityDef.datatypes[typeName];
+				EntityDef.datatype2id[typeName] = utype;
+			}
+
+			{
+				UInt16 utype = 44;
+				string typeName = "D_SKILL_INFOS_LIST";
+				DATATYPE_D_SKILL_INFOS_LIST datatype = new DATATYPE_D_SKILL_INFOS_LIST();
+				EntityDef.datatypes[typeName] = datatype;
+				EntityDef.id2datatypes[utype] = EntityDef.datatypes[typeName];
+				EntityDef.datatype2id[typeName] = utype;
+			}
+
+			{
+				UInt16 utype = 46;
+				string typeName = "D_TEAM_INFOS";
+				DATATYPE_D_TEAM_INFOS datatype = new DATATYPE_D_TEAM_INFOS();
+				EntityDef.datatypes[typeName] = datatype;
+				EntityDef.id2datatypes[utype] = EntityDef.datatypes[typeName];
+				EntityDef.datatype2id[typeName] = utype;
+			}
+
+			{
+				UInt16 utype = 47;
+				string typeName = "D_TEAM_INFOS_LIST";
+				DATATYPE_D_TEAM_INFOS_LIST datatype = new DATATYPE_D_TEAM_INFOS_LIST();
+				EntityDef.datatypes[typeName] = datatype;
+				EntityDef.id2datatypes[utype] = EntityDef.datatypes[typeName];
+				EntityDef.datatype2id[typeName] = utype;
+			}
+
+			{
+				UInt16 utype = 49;
+				string typeName = "AnonymousArray_49";
 				string name = "ENTITY_COMPONENT";
 				DATATYPE_BASE val = null;
 				EntityDef.datatypes.TryGetValue(name, out val);
@@ -722,8 +1029,19 @@ namespace KBEngine
 			}
 
 			{
-				UInt16 utype = 33;
-				string typeName = "AnonymousArray_33";
+				UInt16 utype = 50;
+				string typeName = "AnonymousArray_50";
+				string name = "ENTITY_COMPONENT";
+				DATATYPE_BASE val = null;
+				EntityDef.datatypes.TryGetValue(name, out val);
+				EntityDef.datatypes[typeName] = val;
+				EntityDef.id2datatypes[utype] = EntityDef.datatypes[typeName];
+				EntityDef.datatype2id[typeName] = utype;
+			}
+
+			{
+				UInt16 utype = 51;
+				string typeName = "AnonymousArray_51";
 				string name = "ENTITY_COMPONENT";
 				DATATYPE_BASE val = null;
 				EntityDef.datatypes.TryGetValue(name, out val);

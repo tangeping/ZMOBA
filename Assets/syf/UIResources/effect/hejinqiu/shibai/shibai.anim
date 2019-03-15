@@ -1,0 +1,202 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!74 &7400000
+AnimationClip:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: shibai
+  serializedVersion: 4
+  m_AnimationType: 2
+  m_Compressed: 0
+  m_UseHighQualityCurve: 1
+  m_RotationCurves: []
+  m_CompressedRotationCurves: []
+  m_PositionCurves:
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: {x: .00313895103, y: 438.450928, z: .0078473771}
+        inSlope: {x: 0, y: -6788.50391, z: 0}
+        outSlope: {x: 0, y: -6788.50391, z: 0}
+        tangentMode: 96
+      - time: .0666666627
+        value: {x: .00313895103, y: -14.1159821, z: .0078473771}
+        inSlope: {x: -.0941685364, y: -3182.51221, z: -.23542133}
+        outSlope: {x: -.0941685364, y: -3182.51221, z: -.23542133}
+        tangentMode: 96
+      - time: .099999994
+        value: {x: 0, y: 0, z: 0}
+        inSlope: {x: -.0941685364, y: 423.479492, z: -.23542133}
+        outSlope: {x: -.0941685364, y: 423.479492, z: -.23542133}
+        tangentMode: -1073741824
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    path: 
+  m_ScaleCurves: []
+  m_FloatCurves:
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 31.0789261
+        outSlope: 31.0789261
+        tangentMode: 10
+      - time: .0333333313
+        value: 1.03596413
+        inSlope: 31.0789261
+        outSlope: 31.0789261
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: material._AlphaCon
+    path: piaodai
+    classID: 23
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 31.0789261
+        outSlope: 31.0789261
+        tangentMode: 10
+      - time: .0333333313
+        value: 1.03596413
+        inSlope: 31.0789261
+        outSlope: 31.0789261
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: material._AlphaCon
+    path: shibai
+    classID: 23
+    script: {fileID: 0}
+  m_PPtrCurves: []
+  m_SampleRate: 60
+  m_WrapMode: 0
+  m_Bounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
+  m_AnimationClipSettings:
+    serializedVersion: 2
+    m_StartTime: 0
+    m_StopTime: .099999994
+    m_OrientationOffsetY: 0
+    m_Level: 0
+    m_CycleOffset: 0
+    m_LoopTime: 0
+    m_LoopBlend: 0
+    m_LoopBlendOrientation: 0
+    m_LoopBlendPositionY: 0
+    m_LoopBlendPositionXZ: 0
+    m_KeepOriginalOrientation: 0
+    m_KeepOriginalPositionY: 1
+    m_KeepOriginalPositionXZ: 0
+    m_HeightFromFeet: 0
+    m_Mirror: 0
+  m_EditorCurves:
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 31.0789261
+        outSlope: 31.0789261
+        tangentMode: 10
+      - time: .0333333313
+        value: 1.03596413
+        inSlope: 31.0789261
+        outSlope: 31.0789261
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: material._AlphaCon
+    path: piaodai
+    classID: 23
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 31.0789261
+        outSlope: 31.0789261
+        tangentMode: 10
+      - time: .0333333313
+        value: 1.03596413
+        inSlope: 31.0789261
+        outSlope: 31.0789261
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: material._AlphaCon
+    path: shibai
+    classID: 23
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: .0666666627
+        value: .00313895103
+        inSlope: -.0941685364
+        outSlope: -.0941685364
+        tangentMode: 10
+      - time: .099999994
+        value: 0
+        inSlope: -.0941685364
+        outSlope: -.0941685364
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_LocalPosition.x
+    path: 
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 438.450928
+        inSlope: -6788.50391
+        outSlope: -6788.50391
+        tangentMode: 10
+      - time: .0666666627
+        value: -14.1159821
+        inSlope: -3182.51221
+        outSlope: -3182.51221
+        tangentMode: 10
+      - time: .099999994
+        value: 0
+        inSlope: 423.479492
+        outSlope: 423.479492
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_LocalPosition.y
+    path: 
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: .0666666627
+        value: .0078473771
+        inSlope: -.23542133
+        outSlope: -.23542133
+        tangentMode: 10
+      - time: .099999994
+        value: 0
+        inSlope: -.23542133
+        outSlope: -.23542133
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_LocalPosition.z
+    path: 
+    classID: 4
+    script: {fileID: 0}
+  m_EulerEditorCurves: []
+  m_Events: []

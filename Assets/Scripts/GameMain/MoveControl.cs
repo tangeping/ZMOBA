@@ -24,7 +24,7 @@ public class MoveControl : FrameSyncBehaviour
     {
         bool MouseRight = Input.GetMouseButtonDown(1);
 
-        if (MouseRight && !GameUtils.IsCursorOverUI())//如果鼠标不是点击在UI上面
+        if (MouseRight && !GameUtils.IsCursorOverUserInterface())//如果鼠标不是点击在UI上面
         {
             Ray camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit floorHit;

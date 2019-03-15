@@ -1192,5 +1192,183 @@ namespace KBEngine
 
 	}
 
+	public class D_ROAD_INFOS
+	{
+		public Int32 id = 0;
+		public Int32 group = 0;
+		public float position_x = 0f;
+		public float position_y = 0f;
+		public float position_z = 0f;
+		public float eulerAngles_x = 0f;
+		public float eulerAngles_y = 0f;
+		public float eulerAngles_z = 0f;
+		public Int32 born = 0;
+
+	}
+
+	public class D_ROAD_INFOS_LIST
+	{
+		public List<D_ROAD_INFOS> values = new List<D_ROAD_INFOS>();
+
+	}
+
+	public class D_HERO_INFOS
+	{
+		public Int32 id = 0;
+		public string name = "";
+		public string nick_name = "";
+		public Int32 race = 0;
+		public string race_desc = "";
+		public Int32 skill_1 = 0;
+		public Int32 skill_2 = 0;
+		public Int32 skill_3 = 0;
+		public Int32 skill_4 = 0;
+		public Int32 hero_hp = 0;
+		public Int32 hero_mp = 0;
+		public Int32 hero_strength = 0;
+		public Int32 hero_agile = 0;
+		public Int32 hero_intelligence = 0;
+		public Int32 hero_attacktime = 0;
+		public Int32 hero_speed = 0;
+		public Int32 hero_attackfront = 0;
+		public Int32 hero_attackback = 0;
+		public Int32 hero_skillfront = 0;
+		public Int32 hero_skillback = 0;
+		public Int32 hero_scope = 0;
+		public Int32 hero_attack = 0;
+		public Int32 hero_armor = 0;
+		public Int32 hero_unarmor = 0;
+		public Int32 hero_magic = 0;
+		public Int32 hero_magicresist = 0;
+		public Int32 hero_hprestored = 0;
+		public Int32 hero_mprestored = 0;
+		public Int32 hero_crit = 0;
+		public Int32 hero_uncrit = 0;
+		public Int32 hero_critunmber = 0;
+		public Int32 hero_evade = 0;
+		public Int32 hero_unevade = 0;
+		public Int32 hero_parry = 0;
+		public Int32 hero_unparry = 0;
+		public Int32 hero_parrynumber = 0;
+		public Int32 hero_xixue = 0;
+		public Int32 atk_power = 0;
+		public Int32 hurt_power = 0;
+		public Int32 kill_power = 0;
+		public Int32 hero_energe = 0;
+		public string head_icon = "";
+
+	}
+
+	public class D_HERO_INFOS_LIST
+	{
+		public List<D_HERO_INFOS> values = new List<D_HERO_INFOS>();
+
+	}
+
+	public class D_PROPS_INFOS
+	{
+		public Int32 prop_id = 0;
+		public string prop_name = "";
+		public string prop_icon = "";
+		public Int32 prop_type = 0;
+		public Int32 prop_quality = 0;
+		public Int32 prop_order = 0;
+		public Int32 prop_max = 0;
+		public Int32 prop_resale = 0;
+		public Int32 prop_diamond = 0;
+		public Int32 prop_hanbing = 0;
+		public Int32 prop_moba = 0;
+		public Int32 prop_jjc = 0;
+		public Int32 prop_maoxian = 0;
+		public string prop_describe = "";
+		public Int32 prop_function = 0;
+		public Int32 prop_parameters1 = 0;
+		public Int32 prop_parameters2 = 0;
+		public Int32 prop_parameters3 = 0;
+		public Int32 prop_parameters4 = 0;
+		public Int32 prop_parameters5 = 0;
+		public Int32 prop_parameters6 = 0;
+		public Int32 prop_drop1 = 0;
+		public Int32 prop_drop2 = 0;
+		public Int32 prop_drop3 = 0;
+		public Int32 prop_drop4 = 0;
+		public Int32 prop_gm = 0;
+		public Int32 prop_buy = 0;
+
+	}
+
+	public class D_PROPS_INFOS_LIST
+	{
+		public List<D_PROPS_INFOS> values = new List<D_PROPS_INFOS>();
+
+	}
+
+	public class D_SHOP_INFOS
+	{
+		public Int32 shop_id = 0;
+		public string shop_des = "";
+		public Int32 shop_refreshstart = 0;
+		public Int32 shop_refreshtime = 0;
+		public Int32 shop_needid = 0;
+		public string shop_needdes = "";
+		public Int32 shop_amount = 0;
+		public string shop_refreshtime1 = "";
+		public Int32 open_lv = 0;
+
+	}
+
+	public class D_SHOP_INFOS_LIST
+	{
+		public List<D_SHOP_INFOS> values = new List<D_SHOP_INFOS>();
+
+	}
+
+	public class D_SKILL_INFOS
+	{
+		public Int32 id = 0;
+		public string name = "";
+		public string skill_icon = "";
+		public Int32 skill_damage_chushi = 0;
+		public Int32 skill_damage_growth = 0;
+		public Int32 skill_ad_chushi = 0;
+		public Int32 skill_ad_growth = 0;
+		public Int32 skill_ap_chushi = 0;
+		public Int32 skill_ap_growth = 0;
+		public Int32 skill_type = 0;
+		public Int32 skill_ongoing = 0;
+		public Int32 skill_sing_time = 0;
+		public Int32 skill_cutdown = 0;
+		public Int32 skill_cutdownif = 0;
+		public Int32 skill_cd = 0;
+		public Int32 attack_distance = 0;
+		public Int32 aoe_radius = 0;
+
+	}
+
+	public class D_SKILL_INFOS_LIST
+	{
+		public List<D_SKILL_INFOS> values = new List<D_SKILL_INFOS>();
+
+	}
+
+	public class D_TEAM_INFOS
+	{
+		public Int32 id = 0;
+		public Int32 team_id = 0;
+		public float position_x = 0f;
+		public float position_y = 0f;
+		public float position_z = 0f;
+		public float direction_x = 0f;
+		public float direction_y = 0f;
+		public float direction_z = 0f;
+
+	}
+
+	public class D_TEAM_INFOS_LIST
+	{
+		public List<D_TEAM_INFOS> values = new List<D_TEAM_INFOS>();
+
+	}
+
 
 }

@@ -6,6 +6,11 @@ TagManager:
   tags:
   - road
   - NPC
+  - Monster
+  - FlyingObject
+  - Tower
+  - Base
+  - Ground
   layers:
   - Default
   - TransparentFX
@@ -17,8 +22,8 @@ TagManager:
   - 
   - obstacle
   - ground
-  - 
-  - 
+  - miniMap
+  - Score
   - 
   - 
   - 

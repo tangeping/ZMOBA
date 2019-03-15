@@ -16,14 +16,14 @@ namespace KBEngine
 
         public override void __init__()
         {
-
-           
+            
         }
 
         public override void onDestroy()
         {
 
         }
+
 
         public override void onNameChanged(string old)
         {
