@@ -11,3 +11,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SimpleField.unity
     guid: 8ef7c1832b68644418e500a147d89bab
+  - enabled: 1
+    path: Assets/Scenes/gameOver.unity
+    guid: ceb2572aa0989644c81088fa8b3688a8
