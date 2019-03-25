@@ -146,6 +146,7 @@ namespace KBEngine
         /// <param name="Vector2Int">A Vector2Int inside the grid</param>
         public void UnblockCell(Vector2Int nodeIndex) => SetCellCost(nodeIndex, this.DefaultCost);
 
+        public bool CanWalk(Vector2Int nodeIndex) { return GetCellCost(nodeIndex) == this.DefaultCost; }
         /// <summary>
         /// Looks-up the cost for traversing a given cell, if a cell is blocked (<see cref="BlockCell"/>) 
         /// +infinity is returned
