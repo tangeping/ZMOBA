@@ -78,9 +78,7 @@ public class NavAgent : FrameSyncBehaviour
         FPTransform.position = GetOnGroundPoint(FPTransform.position);
     }
 
-    // if you use Roy-TAstar navigate,you should call GetPath(start,end) function. 
-    //if you use Justinhj navigate , you should call GetPath(start,end,new AstarPathfinder(gridMap,0) function.
-    public void SetDestination(FPVector dest)
+    public void SetDestination(FPVector dest,int type = 0)
     {
         ClearPath();//清除标记
         dest = GetOnGroundPoint(dest);
@@ -88,7 +86,18 @@ public class NavAgent : FrameSyncBehaviour
         endPosition = dest;
         startNode = GridMap.getIndex(startPosition);
         endNode = GridMap.getIndex(endPosition);
-        path = GridMap.GetPath(startNode, endNode/*, new AStarPathfinder(gridMap, 0)*/);
+
+        if(type == 0)// if you use Roy-TAstar navigate,you should call GetPath(start,end) function. 
+        {
+            path = GridMap.GetPath(startNode, endNode);
+        }
+        else if(type == 1)    //if you use Justinhj navigate , you should call GetPath(start,end,new AstarPathfinder(gridMap,0) function.
+        {
+            path = GridMap.GetPath(startNode, endNode, new AStarPathfinder(gridMap, 0));
+            Debug.Log("path.length:" + path.Length);
+        }
+
+
 //         if (name == "monster_10002")
 //         {
 //             Debug.LogFormat("{0} startNode:{1},endNode:{2},path.length:{3},start:{4},end:{5}",

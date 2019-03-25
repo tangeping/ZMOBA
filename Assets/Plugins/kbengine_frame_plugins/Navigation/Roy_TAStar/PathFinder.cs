@@ -146,9 +146,21 @@ namespace KBEngine
         }        
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static FP ManhattanDistance(Vector2Int p0, Vector2Int p1)
+        private static FP ManhattanDistance(Vector2Int p0, Vector2Int p1)//不包含对角线
         {
             return FPMath.Abs(p0.x - p1.x) + FPMath.Abs(p0.y - p1.y);
+        }
+
+        private static FP DiagonalDistance(Vector2Int p0, Vector2Int p1) //包含对角线
+        {
+            int h_diagonal = Mathf.Min(Mathf.Abs(p0.x - p1.x), Mathf.Abs(p0.y - p1.y));
+            int h_straight = Mathf.Abs(p0.x - p1.x) + Mathf.Abs(p0.y - p1.y);
+            return Offset.SquareRoot * h_diagonal + 1 * (h_straight - 2 * h_diagonal);
+        }  
+        
+        private static FP EuclidDistance(Vector2Int p0, Vector2Int p1) //欧几里得距离，任意距离
+        {           
+            return FPVector2.Distance(p0.ToFPVector2(),p1.ToFPVector2());
         }
 
         /// <summary>

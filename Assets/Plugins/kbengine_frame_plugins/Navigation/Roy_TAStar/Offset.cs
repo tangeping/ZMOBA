@@ -11,6 +11,7 @@ namespace KBEngine
     /// </summary>
     public struct Offset : IEquatable<Offset>
     {
+        static public readonly FP SquareRoot = 1.4142135623730950488016887242097f;
         /// <summary>
         /// Constructor
         /// </summary>
@@ -31,7 +32,7 @@ namespace KBEngine
             this.y = y;
 
             // Penalize diagonal movement
-            this.Cost = (x != 0 && y != 0) ? 1 : 1.4142135623730950488016887242097f; // sqrt(2)                                  
+            this.Cost = (x != 0 && y != 0) ? 1 : SquareRoot; // sqrt(2)                                  
         }
 
         /// <summary>

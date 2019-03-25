@@ -7,7 +7,7 @@ using UnityEngine;
 public class testTransform : MonoBehaviour {
 
     // Use this for initialization
-    FPVector dest;
+    public FPVector dest;
     FPTransform tsTransform;
     FP speed = 40f;
     Actions animator; 

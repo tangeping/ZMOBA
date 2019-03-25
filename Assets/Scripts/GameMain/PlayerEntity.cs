@@ -270,7 +270,6 @@ public class PlayerEntity : GameEntity {
             }
             FrameSyncInput.SetInt((int)InputCmd.WANTED_SKILL_KEY, SyncWantedSkill);
         }
- 
     }
 
     public void OperationHandling()
@@ -287,9 +286,10 @@ public class PlayerEntity : GameEntity {
         FPVector mousePoint = FrameSyncInput.GetFPVector((byte)InputCmd.MOUSE_POINT);
         FPVector mouseNormal = FrameSyncInput.GetFPVector((byte)InputCmd.MOUSE_NORMAL);
         wantedSkill = FrameSyncInput.HasInt((int)InputCmd.WANTED_SKILL_KEY) ? FrameSyncInput.GetInt((int)InputCmd.WANTED_SKILL_KEY):-1;
-     
+   
         if (left || right)
-        {                                                                                                                                                                                                                                                   FPRaycastHit outhit = PhysicsWorldManager.instance.Raycast(new FPRay(origin, direct), FP.PositiveInfinity);
+        {
+            FPRaycastHit outhit = PhysicsWorldManager.instance.Raycast(new FPRay(origin, direct), 200);
             if(right)
             {
                 SetIndicatorViaPosition(mousePoint.ToVector(), mouseNormal.ToVector());
