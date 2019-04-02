@@ -239,7 +239,7 @@ namespace KBEngine
             else if (searchState == AStarPathfinder.SearchState.Failed)
             {
                 // FAILED, no path to goal
-                //System.Console.WriteLine("Pathfind FAILED!");
+                Debug.LogError("Pathfind FAILED!");              
             }
 
             return null;
