@@ -54,7 +54,7 @@ public class TestPathFinder{
 
         if(!mapSearchNodePool.ContainsKey(nodeIndex))
         {
-            TestNode node  = new TestNode(nodeIndex, m_grid.CanWalk(nodeIndex));
+            TestNode node  = new TestNode(nodeIndex, !m_grid.isBlockCell(nodeIndex));
             node.g = DiagonalDistance(node.index, m_startIndex);
             node.h = DiagonalDistance(node.index, m_endIndex);
             node.parent = null;
@@ -134,7 +134,7 @@ public class TestPathFinder{
     {
         int h_diagonal = Mathf.Min(Mathf.Abs(p0.x - p1.x), Mathf.Abs(p0.y - p1.y));
         int h_straight = Mathf.Abs(p0.x - p1.x) + Mathf.Abs(p0.y - p1.y);
-        return Offset.SquareRoot * h_diagonal + 1 * (h_straight - 2 * h_diagonal);
+        return  (FP)1.41421356f * h_diagonal + 1 * (h_straight - 2 * h_diagonal);
     }
 
     private  FP EuclidDistance(Vector2Int p0, Vector2Int p1) //欧几里得距离，任意距离

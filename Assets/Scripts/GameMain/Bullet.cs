@@ -9,6 +9,7 @@ public class Bullet : MonoBehaviour {
     private float speed = 24f;
     private float Delay = 12f;
     [HideInInspector] public Transform target;
+    private Vector3 moveDir = Vector3.zero;
 	void Start () {
 
         Destroy(gameObject, Delay);
@@ -20,10 +21,10 @@ public class Bullet : MonoBehaviour {
 
         if(target != null)
         {
-            Vector3 dir = (target.position - transform.position).normalized * speed * Time.deltaTime;
-            transform.Translate(dir);
-        }      
-	}
+            moveDir = (target.position - transform.position).normalized * speed * Time.deltaTime;            
+        }
+        transform.Translate(moveDir);
+    }
 
     private void OnTriggerEnter(Collider other)
     {

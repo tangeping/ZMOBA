@@ -21,6 +21,7 @@ namespace KBEngine
 
 		public FrameSyncReportBase component1 = null;
 		public OperationBase component2 = null;
+		public ChatBase component3 = null;
 		public string name = "";
 		public virtual void onNameChanged(string oldValue) {}
 		public SByte teamID = 0;
@@ -57,18 +58,34 @@ namespace KBEngine
 			if(component2 == null)
 				throw new Exception("Please inherit and implement, such as: \"class Operation : OperationBase\"");
 
+			foreach (System.Reflection.Assembly ass in AppDomain.CurrentDomain.GetAssemblies())
+			{
+				Type entityComponentScript = ass.GetType("KBEngine.Chat");
+				if(entityComponentScript != null)
+				{
+					component3 = (ChatBase)Activator.CreateInstance(entityComponentScript);
+					component3.owner = this;
+					component3.entityComponentPropertyID = 14;
+				}
+			}
+
+			if(component3 == null)
+				throw new Exception("Please inherit and implement, such as: \"class Chat : ChatBase\"");
+
 		}
 
 		public override void onComponentsEnterworld()
 		{
 			component1.onEnterworld();
 			component2.onEnterworld();
+			component3.onEnterworld();
 		}
 
 		public override void onComponentsLeaveworld()
 		{
 			component1.onLeaveworld();
 			component2.onLeaveworld();
+			component3.onLeaveworld();
 		}
 
 		public override void onGetBase()
@@ -100,12 +117,14 @@ namespace KBEngine
 		{
 			component1.onAttached(this);
 			component2.onAttached(this);
+			component3.onAttached(this);
 		}
 
 		public override void detachComponents()
 		{
 			component1.onDetached(this);
 			component2.onDetached(this);
+			component3.onDetached(this);
 		}
 
 		public override void onRemoteMethodCall(MemoryStream stream)
@@ -149,6 +168,9 @@ namespace KBEngine
 						break;
 					case 10:
 						component2.onRemoteMethodCall(methodUtype, stream);
+						break;
+					case 14:
+						component3.onRemoteMethodCall(methodUtype, stream);
 						break;
 					default:
 						break;
@@ -204,6 +226,9 @@ namespace KBEngine
 						case 10:
 							component2.onUpdatePropertys(_t_child_utype, stream, -1);
 							break;
+						case 14:
+							component3.onUpdatePropertys(_t_child_utype, stream, -1);
+							break;
 						default:
 							break;
 					}
@@ -218,6 +243,9 @@ namespace KBEngine
 						break;
 					case 10:
 						component2.createFromStream(stream);
+						break;
+					case 14:
+						component3.createFromStream(stream);
 						break;
 					case 40001:
 						Vector3 oldval_direction = direction;
@@ -301,6 +329,8 @@ namespace KBEngine
 
 			component2.callPropertysSetMethods();
 
+			component3.callPropertysSetMethods();
+
 			Vector3 oldval_direction = direction;
 			Property prop_direction = pdatas[2];
 			if(prop_direction.isBase())
@@ -323,7 +353,7 @@ namespace KBEngine
 			}
 
 			string oldval_name = name;
-			Property prop_name = pdatas[6];
+			Property prop_name = pdatas[7];
 			if(prop_name.isBase())
 			{
 				if(inited && !inWorld)
@@ -365,7 +395,7 @@ namespace KBEngine
 			}
 
 			SByte oldval_teamID = teamID;
-			Property prop_teamID = pdatas[7];
+			Property prop_teamID = pdatas[8];
 			if(prop_teamID.isBase())
 			{
 				if(inited && !inWorld)

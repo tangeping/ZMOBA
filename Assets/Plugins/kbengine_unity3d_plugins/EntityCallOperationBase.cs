@@ -91,6 +91,16 @@ namespace KBEngine
 			sendCall(null);
 		}
 
+		public void reqSelectHero(Int32 arg1)
+		{
+			Bundle pBundle = newCall("reqSelectHero", entityComponentPropertyID);
+			if(pBundle == null)
+				return;
+
+			bundle.writeInt32(arg1);
+			sendCall(null);
+		}
+
 		public void reqShopConf()
 		{
 			Bundle pBundle = newCall("reqShopConf", entityComponentPropertyID);

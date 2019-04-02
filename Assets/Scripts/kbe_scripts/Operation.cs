@@ -85,6 +85,10 @@
             cellEntityCall.reqTeamConf();
         }
 
+        public void reqHeroList(int heroID)
+        {
+            cellEntityCall.reqSelectHero(heroID);
+        }
 
         public override void rspTeamInfo(D_TEAM_INFOS_LIST teams)
         {
@@ -141,5 +145,11 @@
                 SpaceData.Instance.Skills[item.id] = item;
             }
         }
+
+        public override void reqSelectHeroResult(byte arg1)
+        {
+            
+        }
+
     }
 }

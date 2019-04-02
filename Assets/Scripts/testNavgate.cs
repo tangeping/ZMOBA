@@ -36,7 +36,7 @@ public class testNavgate : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		
+        Agent.SetDestination(FPVector.zero);
 	}
 
     FPVector GetOnGroundPoint(FPVector point)
@@ -65,25 +65,25 @@ public class testNavgate : MonoBehaviour {
         Debug.Log("startNode:"+ startNode + ",endNode:"+ endNode+ ",paht.length:" + (path != null ? path.Count.ToString() : "null"));
     }
         // Update is called once per frame
-        void Update ()                                              
+    void Update ()                                              
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Ray camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit floorHit;
-            if (Physics.Raycast(camRay, out floorHit,Mathf.Infinity,LayerMask.GetMask("ground")))
-            {
-                var dest = floorHit.point.ToFPVector();
-
-                if (Agent)
-                {
-                    SetDestination(dest);
-                }
-                else
-                {
-                    Debug.Log(name + "-------------agent=-----------:" + Agent);
-                }
-            }
+//             Ray camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+//             RaycastHit floorHit;
+//             if (Physics.Raycast(camRay, out floorHit,Mathf.Infinity,LayerMask.GetMask("ground")))
+//             {
+//                 var dest = floorHit.point.ToFPVector();
+// 
+//                 if (Agent)
+//                 {
+//                     Agent.SetDestination(dest);
+//                 }
+//                 else
+//                 {
+//                     Debug.Log(name + "-------------agent=-----------:" + Agent);
+//                 }
+//             }
         }
     }
 }

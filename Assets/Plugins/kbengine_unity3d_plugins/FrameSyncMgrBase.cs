@@ -196,7 +196,7 @@ namespace KBEngine
 					case 40002:
 						stream.readUint32();
 						break;
-					case 12:
+					case 15:
 						SByte oldval_state = state;
 						state = stream.readInt8();
 

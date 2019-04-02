@@ -1148,6 +1148,48 @@ namespace KBEngine
 		}
 	}
 
+	public class HERO_BAG : List<Int32>
+	{
+
+	}
+
+	public struct ROOM_KEY
+	{
+		UInt64 value;
+
+		ROOM_KEY(UInt64 value)
+		{
+			this.value = value;
+		}
+
+		public static implicit operator UInt64(ROOM_KEY value)
+		{
+			return value.value;
+		}
+
+		public static implicit operator ROOM_KEY(UInt64 value)
+		{
+			UInt64 tvalue = (UInt64)value;
+			return new ROOM_KEY(tvalue);
+		}
+
+		public static UInt64 MaxValue
+		{
+			get
+			{
+				return UInt64.MaxValue;
+			}
+		}
+
+		public static UInt64 MinValue
+		{
+			get
+			{
+				return UInt64.MinValue;
+			}
+		}
+	}
+
 	public class AVATAR_DATA
 	{
 		public SByte param1 = 0;

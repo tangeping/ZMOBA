@@ -34,7 +34,7 @@ public class Monster : GameEntity
     public override FP moveSpeed { get { return _speed; } set { _speed = value; } }
 
     [Header("Revival")]
-    [SerializeField] UInt32 _revivalTime = 5; //秒
+    [SerializeField] UInt32 _revivalTime = 2; //秒
     public override UInt32 revivalTime { get { return _revivalTime; } }
 
     private MonsterActions animator;

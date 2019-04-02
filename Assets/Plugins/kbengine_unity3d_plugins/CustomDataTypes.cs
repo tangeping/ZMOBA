@@ -13,6 +13,34 @@ namespace KBEngine
 
 
 
+	public class DATATYPE_HERO_BAG : DATATYPE_BASE
+	{
+		public HERO_BAG createFromStreamEx(MemoryStream stream)
+		{
+			UInt32 size = stream.readUint32();
+			HERO_BAG datas = new HERO_BAG();
+
+			while(size > 0)
+			{
+				--size;
+				datas.Add(stream.readInt32());
+			};
+
+			return datas;
+		}
+
+		public void addToStreamEx(Bundle stream, HERO_BAG v)
+		{
+			stream.writeUint32((UInt32)v.Count);
+			for(int i=0; i<v.Count; ++i)
+			{
+				stream.writeInt32(v[i]);
+			};
+		}
+	}
+
+
+
 	public class DATATYPE_AVATAR_DATA : DATATYPE_BASE
 	{
 		public AVATAR_DATA createFromStreamEx(MemoryStream stream)
