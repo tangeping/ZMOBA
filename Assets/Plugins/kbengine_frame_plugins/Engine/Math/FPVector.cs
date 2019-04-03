@@ -656,12 +656,6 @@ namespace KBEngine
         public void Normalize()
         {
             FP num2 = ((this.x * this.x) + (this.y * this.y)) + (this.z * this.z);
-            if(num2._serializedValue < 0)
-            {
-                Debug.Log("num2:"+num2+ "x:" + x + ",y:" + y + ",z:" + z 
-                    + ",serializedValue:"+ num2._serializedValue +",x.s:"+x._serializedValue +"y.s:"+y._serializedValue+",z.s:"+z._serializedValue
-                    );
-            }
             FP num = FP.One / FP.Sqrt(num2);
             this.x *= num;
             this.y *= num;

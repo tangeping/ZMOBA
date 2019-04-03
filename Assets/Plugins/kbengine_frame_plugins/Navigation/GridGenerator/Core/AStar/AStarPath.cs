@@ -102,7 +102,7 @@ namespace KBEngine
 
         }
 
-        public void LoadFromCache(int type = 0)
+        public void LoadFromCache()
         {
             if (file_cachedStartup != null)
             {
