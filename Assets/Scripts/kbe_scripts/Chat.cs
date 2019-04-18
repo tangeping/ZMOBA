@@ -31,7 +31,7 @@
 
         public void say(string context)
         {
-            cellEntityCall.say(((GameObject)(this.owner.renderObj)).name, context);
+            cellEntityCall.say(context);
         }
 
         public override void reply(string name, string context)

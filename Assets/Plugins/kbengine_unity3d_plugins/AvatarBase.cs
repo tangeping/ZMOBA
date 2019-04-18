@@ -19,6 +19,7 @@ namespace KBEngine
 		public EntityBaseEntityCall_AvatarBase baseEntityCall = null;
 		public EntityCellEntityCall_AvatarBase cellEntityCall = null;
 
+		public MatchAvatarBase compMatchAvatar = null;
 		public FrameSyncReportBase component1 = null;
 		public OperationBase component2 = null;
 		public ChatBase component3 = null;
@@ -32,12 +33,26 @@ namespace KBEngine
 		{
 			foreach (System.Reflection.Assembly ass in AppDomain.CurrentDomain.GetAssemblies())
 			{
+				Type entityComponentScript = ass.GetType("KBEngine.MatchAvatar");
+				if(entityComponentScript != null)
+				{
+					compMatchAvatar = (MatchAvatarBase)Activator.CreateInstance(entityComponentScript);
+					compMatchAvatar.owner = this;
+					compMatchAvatar.entityComponentPropertyID = 17;
+				}
+			}
+
+			if(compMatchAvatar == null)
+				throw new Exception("Please inherit and implement, such as: \"class MatchAvatar : MatchAvatarBase\"");
+
+			foreach (System.Reflection.Assembly ass in AppDomain.CurrentDomain.GetAssemblies())
+			{
 				Type entityComponentScript = ass.GetType("KBEngine.FrameSyncReport");
 				if(entityComponentScript != null)
 				{
 					component1 = (FrameSyncReportBase)Activator.CreateInstance(entityComponentScript);
 					component1.owner = this;
-					component1.entityComponentPropertyID = 7;
+					component1.entityComponentPropertyID = 8;
 				}
 			}
 
@@ -51,7 +66,7 @@ namespace KBEngine
 				{
 					component2 = (OperationBase)Activator.CreateInstance(entityComponentScript);
 					component2.owner = this;
-					component2.entityComponentPropertyID = 10;
+					component2.entityComponentPropertyID = 11;
 				}
 			}
 
@@ -65,7 +80,7 @@ namespace KBEngine
 				{
 					component3 = (ChatBase)Activator.CreateInstance(entityComponentScript);
 					component3.owner = this;
-					component3.entityComponentPropertyID = 14;
+					component3.entityComponentPropertyID = 15;
 				}
 			}
 
@@ -76,6 +91,7 @@ namespace KBEngine
 
 		public override void onComponentsEnterworld()
 		{
+			compMatchAvatar.onEnterworld();
 			component1.onEnterworld();
 			component2.onEnterworld();
 			component3.onEnterworld();
@@ -83,6 +99,7 @@ namespace KBEngine
 
 		public override void onComponentsLeaveworld()
 		{
+			compMatchAvatar.onLeaveworld();
 			component1.onLeaveworld();
 			component2.onLeaveworld();
 			component3.onLeaveworld();
@@ -115,6 +132,7 @@ namespace KBEngine
 
 		public override void attachComponents()
 		{
+			compMatchAvatar.onAttached(this);
 			component1.onAttached(this);
 			component2.onAttached(this);
 			component3.onAttached(this);
@@ -122,6 +140,7 @@ namespace KBEngine
 
 		public override void detachComponents()
 		{
+			compMatchAvatar.onDetached(this);
 			component1.onDetached(this);
 			component2.onDetached(this);
 			component3.onDetached(this);
@@ -163,13 +182,16 @@ namespace KBEngine
 				Property pComponentPropertyDescription = sm.idpropertys[componentPropertyUType];
 				switch(pComponentPropertyDescription.properUtype)
 				{
-					case 7:
+					case 17:
+						compMatchAvatar.onRemoteMethodCall(methodUtype, stream);
+						break;
+					case 8:
 						component1.onRemoteMethodCall(methodUtype, stream);
 						break;
-					case 10:
+					case 11:
 						component2.onRemoteMethodCall(methodUtype, stream);
 						break;
-					case 14:
+					case 15:
 						component3.onRemoteMethodCall(methodUtype, stream);
 						break;
 					default:
@@ -220,13 +242,16 @@ namespace KBEngine
 					Property pComponentPropertyDescription = pdatas[_t_utype];
 					switch(pComponentPropertyDescription.properUtype)
 					{
-						case 7:
+						case 17:
+							compMatchAvatar.onUpdatePropertys(_t_child_utype, stream, -1);
+							break;
+						case 8:
 							component1.onUpdatePropertys(_t_child_utype, stream, -1);
 							break;
-						case 10:
+						case 11:
 							component2.onUpdatePropertys(_t_child_utype, stream, -1);
 							break;
-						case 14:
+						case 15:
 							component3.onUpdatePropertys(_t_child_utype, stream, -1);
 							break;
 						default:
@@ -238,13 +263,16 @@ namespace KBEngine
 
 				switch(prop.properUtype)
 				{
-					case 7:
+					case 17:
+						compMatchAvatar.createFromStream(stream);
+						break;
+					case 8:
 						component1.createFromStream(stream);
 						break;
-					case 10:
+					case 11:
 						component2.createFromStream(stream);
 						break;
-					case 14:
+					case 15:
 						component3.createFromStream(stream);
 						break;
 					case 40001:
@@ -298,7 +326,7 @@ namespace KBEngine
 					case 40002:
 						stream.readUint32();
 						break;
-					case 6:
+					case 7:
 						SByte oldval_teamID = teamID;
 						teamID = stream.readInt8();
 
@@ -324,6 +352,8 @@ namespace KBEngine
 		{
 			ScriptModule sm = EntityDef.moduledefs["Avatar"];
 			Dictionary<UInt16, Property> pdatas = sm.idpropertys;
+
+			compMatchAvatar.callPropertysSetMethods();
 
 			component1.callPropertysSetMethods();
 
@@ -353,7 +383,7 @@ namespace KBEngine
 			}
 
 			string oldval_name = name;
-			Property prop_name = pdatas[7];
+			Property prop_name = pdatas[8];
 			if(prop_name.isBase())
 			{
 				if(inited && !inWorld)
@@ -395,7 +425,7 @@ namespace KBEngine
 			}
 
 			SByte oldval_teamID = teamID;
-			Property prop_teamID = pdatas[8];
+			Property prop_teamID = pdatas[9];
 			if(prop_teamID.isBase())
 			{
 				if(inited && !inWorld)

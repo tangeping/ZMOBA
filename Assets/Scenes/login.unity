@@ -1430,75 +1430,6 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 447348, guid: 5c7ce378ebba03147af2876982648e89, type: 2}
   m_PrefabInternal: {fileID: 50774197}
---- !u!1 &53772562
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 53772563}
-  - component: {fileID: 53772565}
-  - component: {fileID: 53772564}
-  m_Layer: 0
-  m_Name: clientapp
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &53772563
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 53772562}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 866.08673, y: 194.03658, z: 79.125}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 20
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &53772564
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 53772562}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3769e308824dd834180191eab7e8edd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &53772565
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 53772562}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: adfcbdba58d72bc47a9880d5bf5750df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  debugLevel: 0
-  isMultiThreads: 0
-  ip: 47.107.167.72
-  port: 20013
-  clientType: 7
-  networkEncryptType: 0
-  syncPlayerMS: 33
-  threadUpdateHZ: 60
-  serverHeartbeatTick: 60
-  TCP_SEND_BUFFER_MAX: 1460
-  TCP_RECV_BUFFER_MAX: 1460
-  UDP_SEND_BUFFER_MAX: 1472
-  UDP_RECV_BUFFER_MAX: 1472
-  useAliasEntityID: 1
-  isOnInitCallPropertysSetMethods: 1
-  forceDisableUDP: 0
-  automaticallyUpdateSDK: 1
 --- !u!1 &53819128
 GameObject:
   m_ObjectHideFlags: 0
@@ -13386,6 +13317,14 @@ Prefab:
     - target: {fileID: 19828156, guid: 7d4d2c6fe968e6740ba4b0755e25b720, type: 2}
       propertyPath: ColorModule.gradient.minGradient.key3.a
       value: 0.0000
+      objectReference: {fileID: 0}
+    - target: {fileID: 19828156, guid: 7d4d2c6fe968e6740ba4b0755e25b720, type: 2}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 0.3000
+      objectReference: {fileID: 0}
+    - target: {fileID: 19828156, guid: 7d4d2c6fe968e6740ba4b0755e25b720, type: 2}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 0.3000
       objectReference: {fileID: 0}
     - target: {fileID: 19828156, guid: 7d4d2c6fe968e6740ba4b0755e25b720, type: 2}
       propertyPath: InitialModule.startSize.minScalar
@@ -28120,6 +28059,14 @@ Prefab:
       propertyPath: InitialModule.startSize.minScalar
       value: 8.0000
       objectReference: {fileID: 0}
+    - target: {fileID: 19890414, guid: ed9c446fa51d2af4196fc337fcbcdea6, type: 2}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 8.0000
+      objectReference: {fileID: 0}
+    - target: {fileID: 19890414, guid: ed9c446fa51d2af4196fc337fcbcdea6, type: 2}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 8.0000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ed9c446fa51d2af4196fc337fcbcdea6, type: 2}
   m_IsPrefabParent: 0
@@ -30757,6 +30704,14 @@ Prefab:
     - target: {fileID: 19828156, guid: 7d4d2c6fe968e6740ba4b0755e25b720, type: 2}
       propertyPath: ColorModule.gradient.minGradient.key3.a
       value: 0.0000
+      objectReference: {fileID: 0}
+    - target: {fileID: 19828156, guid: 7d4d2c6fe968e6740ba4b0755e25b720, type: 2}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 0.4000
+      objectReference: {fileID: 0}
+    - target: {fileID: 19828156, guid: 7d4d2c6fe968e6740ba4b0755e25b720, type: 2}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 0.4000
       objectReference: {fileID: 0}
     - target: {fileID: 19828156, guid: 7d4d2c6fe968e6740ba4b0755e25b720, type: 2}
       propertyPath: InitialModule.startSize.minScalar
@@ -41408,6 +41363,14 @@ Prefab:
     - target: {fileID: 474380, guid: 228f1d669bba940478227eeb64b066bb, type: 2}
       propertyPath: m_LocalPosition.z
       value: .819999993
+      objectReference: {fileID: 0}
+    - target: {fileID: 19885692, guid: 228f1d669bba940478227eeb64b066bb, type: 2}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 0.0600
+      objectReference: {fileID: 0}
+    - target: {fileID: 19885692, guid: 228f1d669bba940478227eeb64b066bb, type: 2}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 0.0600
       objectReference: {fileID: 0}
     - target: {fileID: 19885692, guid: 228f1d669bba940478227eeb64b066bb, type: 2}
       propertyPath: InitialModule.startSize.minScalar

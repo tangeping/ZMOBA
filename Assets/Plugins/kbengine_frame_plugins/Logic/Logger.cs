@@ -257,7 +257,7 @@ namespace KBEngine
     /// </summary>
     public class LogWriter
     {
-        private string m_logPath = UnityEngine.Application.dataPath + "/log/";
+        private string m_logPath = UnityEngine.Application.persistentDataPath + "/log/";
         private string m_logFileName = "log_{0}.txt";
         private string m_logFilePath;
         private FileStream m_fs;

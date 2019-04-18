@@ -42,7 +42,7 @@ namespace KBEngine
 			Method method = sm.idmethods[methodUtype];
 			switch(method.methodUtype)
 			{
-				case 4:
+				case 5:
 					FS_FRAME_DATA onFrameMessage_arg1 = ((DATATYPE_FS_FRAME_DATA)method.args[0]).createFromStreamEx(stream);
 					onFrameMessage(onFrameMessage_arg1);
 					break;
@@ -81,7 +81,7 @@ namespace KBEngine
 
 				switch(prop.properUtype)
 				{
-					case 9:
+					case 10:
 						SByte oldval_seatNo = seatNo;
 						seatNo = stream.readInt8();
 

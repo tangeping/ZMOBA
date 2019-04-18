@@ -20,6 +20,9 @@
                 KBEngine.Event.registerIn("reqReady", this, "reqReady");
                 KBEngine.Event.registerIn("reqStop", this, "reqStop");
                 KBEngine.Event.registerIn("reqRun", this, "reqRun");
+
+                KBEngine.Event.registerIn("reqHeroList", this, "reqHeroList");
+                KBEngine.Event.registerIn("reqSelectHero", this, "reqSelectHero");
             }
         }
 
@@ -34,12 +37,24 @@
                 reqShopConf();
                 reqSkillConf();
                 reqTeamConf();
+
+                KBEngine.Event.fireOut("onChooseHeroBegin");
             }
         }
 
         public override void readyResult(byte result)
         {
             KBEngine.Event.fireOut("readyResult", result);
+        }
+        public void reqHeroList()
+        {
+            cellEntityCall.reqHeroList();
+        }
+
+
+        public void reqSelectHero(Int32 heroID)
+        {
+            cellEntityCall.reqSelectHero(heroID);
         }
 
         public void reqReady(Byte ready)
@@ -85,9 +100,19 @@
             cellEntityCall.reqTeamConf();
         }
 
-        public void reqHeroList(int heroID)
+        public override void broadGameStart()
         {
-            cellEntityCall.reqSelectHero(heroID);
+            KBEngine.Event.fireOut("broadGameStart");
+        }
+
+        public override void reqHeroListResult(HERO_BAG heros)
+        {
+            KBEngine.Event.fireOut("reqHeroListResult", heros);
+        }
+
+        public override void reqSelectHeroResult(byte result)
+        {
+            KBEngine.Event.fireOut("reqSelectHeroResult", result);
         }
 
         public override void rspTeamInfo(D_TEAM_INFOS_LIST teams)
@@ -146,10 +171,7 @@
             }
         }
 
-        public override void reqSelectHeroResult(byte arg1)
-        {
-            
-        }
+
 
     }
 }

@@ -41,6 +41,57 @@ namespace KBEngine
 
 
 
+	public class DATATYPE_FRIEND_LIST : DATATYPE_BASE
+	{
+		public FRIEND_LIST createFromStreamEx(MemoryStream stream)
+		{
+			UInt32 size = stream.readUint32();
+			FRIEND_LIST datas = new FRIEND_LIST();
+
+			while(size > 0)
+			{
+				--size;
+				datas.Add(stream.readInt32());
+			};
+
+			return datas;
+		}
+
+		public void addToStreamEx(Bundle stream, FRIEND_LIST v)
+		{
+			stream.writeUint32((UInt32)v.Count);
+			for(int i=0; i<v.Count; ++i)
+			{
+				stream.writeInt32(v[i]);
+			};
+		}
+	}
+
+
+
+	public class DATATYPE_D_MATCH_REQUEST : DATATYPE_BASE
+	{
+		public D_MATCH_REQUEST createFromStreamEx(MemoryStream stream)
+		{
+			D_MATCH_REQUEST datas = new D_MATCH_REQUEST();
+			datas.utype = stream.readUint32();
+			datas.matchID = stream.readUint64();
+			datas.passwd = stream.readUint32();
+			datas.teamID = stream.readInt8();
+			return datas;
+		}
+
+		public void addToStreamEx(Bundle stream, D_MATCH_REQUEST v)
+		{
+			stream.writeUint32(v.utype);
+			stream.writeUint64(v.matchID);
+			stream.writeUint32(v.passwd);
+			stream.writeInt8(v.teamID);
+		}
+	}
+
+
+
 	public class DATATYPE_AVATAR_DATA : DATATYPE_BASE
 	{
 		public AVATAR_DATA createFromStreamEx(MemoryStream stream)

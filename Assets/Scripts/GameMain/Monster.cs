@@ -293,6 +293,7 @@ public class Monster : GameEntity
     public override void OnSyncedUpdate()
     {
         Think();
+        RecordLog();
     }
 
     bool CheckAddEnemy(GameEntity target)
@@ -366,4 +367,22 @@ public class Monster : GameEntity
         }
     }
 
+    private void RecordLog()
+    {
+        string records = "[" + FrameSyncManager.CurrFrameID.ToString() +"] " ;
+
+        records += ("heroID="+ heroID);
+        records += (",currentSkill=" + currentSkill);
+        records += (",state=" + state);
+        records += (",position=" + FPTransform.position);
+        records += (",target=" + (target == null ? "null" : target.name));
+        records += (",health=" + health);
+        records += (",mana=" + mana);
+        records += (",damage=" + damage);
+        records += (",defense=" + defense);
+        records += (",moveSpeed=" + moveSpeed);
+        records += (",revivalTime=" + revivalTime);
+
+        KBEngine.Logger.Debug(records, false, name);
+    }
 }

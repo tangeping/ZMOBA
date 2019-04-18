@@ -5,13 +5,13 @@ using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-
-
+using UnityEngine.SceneManagement;
 
 public class GameWorld : MonoBehaviour
 {
     void Awake()
     {
+        SceneManager.LoadScene("login");
         DontDestroyOnLoad(transform.gameObject);
     }
 
@@ -30,9 +30,10 @@ public class GameWorld : MonoBehaviour
         KBEngine.Event.registerOut("onStreamDataRecv", this, "onStreamDataRecv");
         KBEngine.Event.registerOut("onStreamDataCompleted", this, "onStreamDataCompleted");
 
-        //         KBEngine.Event.registerOut("updatePosition", this, "updatePosition"); 
-        //         KBEngine.Event.registerOut("set_position", this, "set_position");
-        //         KBEngine.Event.registerOut("set_direction", this, "set_direction");
+        // common
+        KBEngine.Event.registerOut("onKicked", this, "onKicked");
+        KBEngine.Event.registerOut("onDisconnected", this, "onDisconnected");
+        KBEngine.Event.registerOut("onConnectionState", this, "onConnectionState");
     }
 
     void OnDestroy()
@@ -107,44 +108,25 @@ public class GameWorld : MonoBehaviour
             fileBlock.compeleted = true;
         }
     }
-//     public void updatePosition(KBEngine.Entity entity)
-//     {
-//         if (entity.className == "Avatar")
-//         {
-//             FrameSyncReportBase comp = SpaceData.Instance.SpacePlayers.Find(s => s.ownerID == entity.id);
-// 
-//             if(comp != null)
-//             {
-//                 //Debug.Log("updatePosition comp.owner.position:" + comp.owner.position +",entity.posiont:"+entity.position);
-//             }
-//         }
-// 
-//     }
-//     public void set_position(KBEngine.Entity entity)
-//     {
-//         if (entity.className == "Avatar")
-//         {
-//             FrameSyncReportBase comp = SpaceData.Instance.SpacePlayers.Find(s => s.ownerID == entity.id);
-// 
-//             if (comp != null)
-//             {
-//                 //Debug.Log("comp.owner.position:" + comp.owner.position + ",entity.position:" + entity.position);
-//             }
-//         }
-//     }
-// 
-//     public void set_direction(KBEngine.Entity entity)
-//     {
-//         if (entity.className == "Avatar")
-//         {
-//             FrameSyncReportBase comp = SpaceData.Instance.SpacePlayers.Find(s => s.ownerID == entity.id);
-// 
-//             if (comp != null)
-//             {
-//                 //Debug.Log("comp.owner.direction:" + comp.owner.direction + ",entity.direction:" + entity.direction);
-//             }
-//         }
-//     }
 
+    public void onKicked(UInt16 failedcode)
+    {
+        Debug.Log("kick, disconnect!, reason=" + KBEngineApp.app.serverErr(failedcode));
+        SceneManager.LoadScene("login");
+
+    }
+    public void onDisconnected()
+    {
+        Debug.Log("disconnect! will try to reconnect...(你已掉线，尝试重连中!)");
+        //Invoke("onReloginBaseappTimer", 1.0f);
+    }
+
+    public void onConnectionState(bool success)
+    {
+        if (!success)
+            Debug.Log("connect(" + KBEngineApp.app.getInitArgs().ip + ":" + KBEngineApp.app.getInitArgs().port + ") is error! (连接错误)");
+        else
+            Debug.Log("connect successfully, please wait...(连接成功，请等候...)");
+    }
 
 }

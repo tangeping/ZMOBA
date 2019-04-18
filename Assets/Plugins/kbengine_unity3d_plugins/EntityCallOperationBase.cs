@@ -63,6 +63,15 @@ namespace KBEngine
 			sendCall(null);
 		}
 
+		public void reqHeroList()
+		{
+			Bundle pBundle = newCall("reqHeroList", entityComponentPropertyID);
+			if(pBundle == null)
+				return;
+
+			sendCall(null);
+		}
+
 		public void reqPropsConf()
 		{
 			Bundle pBundle = newCall("reqPropsConf", entityComponentPropertyID);
