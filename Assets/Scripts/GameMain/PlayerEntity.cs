@@ -170,6 +170,8 @@ public class PlayerEntity : GameEntity {
             return;
         }
 
+        LookAtY(target.FPTransform.position);
+
         var skill = SkillBox[currentSkill];
         if (TargetTooFarTooFollow(skill))
         {

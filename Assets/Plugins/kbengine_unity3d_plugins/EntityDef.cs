@@ -310,11 +310,26 @@ namespace KBEngine
 
 			//Dbg.DEBUG_MSG("EntityDef::initScriptModules: add(FrameSyncReport), property(spaceID / 40002).");
 
+			Property pFrameSyncReport_farmeID = new Property();
+			pFrameSyncReport_farmeID.name = "farmeID";
+			pFrameSyncReport_farmeID.properUtype = 9;
+			pFrameSyncReport_farmeID.properFlags = 16;
+			pFrameSyncReport_farmeID.aliasID = 4;
+			UInt32 FrameSyncReport_farmeID_defval;
+			UInt32.TryParse("0", out FrameSyncReport_farmeID_defval);
+			pFrameSyncReport_farmeID.defaultVal = FrameSyncReport_farmeID_defval;
+			pFrameSyncReportModule.propertys["farmeID"] = pFrameSyncReport_farmeID; 
+
+			pFrameSyncReportModule.usePropertyDescrAlias = true;
+			pFrameSyncReportModule.idpropertys[(UInt16)pFrameSyncReport_farmeID.aliasID] = pFrameSyncReport_farmeID;
+
+			//Dbg.DEBUG_MSG("EntityDef::initScriptModules: add(FrameSyncReport), property(farmeID / 9).");
+
 			Property pFrameSyncReport_seatNo = new Property();
 			pFrameSyncReport_seatNo.name = "seatNo";
 			pFrameSyncReport_seatNo.properUtype = 10;
 			pFrameSyncReport_seatNo.properFlags = 16;
-			pFrameSyncReport_seatNo.aliasID = 4;
+			pFrameSyncReport_seatNo.aliasID = 5;
 			SByte FrameSyncReport_seatNo_defval;
 			SByte.TryParse("0", out FrameSyncReport_seatNo_defval);
 			pFrameSyncReport_seatNo.defaultVal = FrameSyncReport_seatNo_defval;

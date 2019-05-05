@@ -26,7 +26,7 @@
         public override void onFrameMessage(FS_FRAME_DATA framedata)
         {
             SpaceData.Instance.frameList.Enqueue(framedata);
-            //Debug.Log(System.DateTime.Now + "." + System.DateTime.Now.Millisecond+",onFrameMessage:" + framedata.frameid + framedata.operation.Count );
+            //Debug.Log(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss,fff")+",onFrameMessage:" + framedata.frameid + framedata.operation.Count );
         }
 
 

@@ -147,7 +147,7 @@ public class UI_Hall : MonoBehaviour {
         this.mainPanel.SetActive(false);
         this.heroPanel.SetActive(true);
         this.selectPanel.SetActive(true);
-        KBEngine.Event.fireIn("reqHeroList");
+        //KBEngine.Event.fireIn("reqHeroList");
     }
 
     public void onClickCreateRoom()

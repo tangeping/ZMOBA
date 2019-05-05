@@ -87,7 +87,7 @@ public class NavAgent : FrameSyncBehaviour
         startNode = GridMap.getIndex(startPosition);
         endNode = GridMap.getIndex(endPosition);
 
-        Debug.Log("startNode:" + startNode + ",endNode:" + endNode);
+        //Debug.Log("startNode:" + startNode + ",endNode:" + endNode);
         if(type == 0)// if you use Roy-TAstar navigate,you should call GetPath(start,end) function. 
         {
             path = GridMap.GetPath(startNode, endNode);

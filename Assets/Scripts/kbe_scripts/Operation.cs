@@ -31,14 +31,15 @@
             if (this.owner.isPlayer())
             {
                 Debug.Log("---onCellReady---");
+                this.reqHeroList();
+                KBEngine.Event.fireOut("onChooseHeroBegin");
+
                 reqHeroConf();
                 reqRoadConf();
                 reqPropsConf();
                 reqShopConf();
                 reqSkillConf();
-                reqTeamConf();
-
-                KBEngine.Event.fireOut("onChooseHeroBegin");
+                reqTeamConf();               
             }
         }
 
@@ -49,6 +50,7 @@
         public void reqHeroList()
         {
             cellEntityCall.reqHeroList();
+            Debug.Log("Operation::reqHeroList," + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss,fff"));
         }
 
 
@@ -107,6 +109,7 @@
 
         public override void reqHeroListResult(HERO_BAG heros)
         {
+            Debug.Log("Operation::reqHeroListResult,heros.Count = " + heros.Count +","+ DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss,fff"));
             KBEngine.Event.fireOut("reqHeroListResult", heros);
         }
 

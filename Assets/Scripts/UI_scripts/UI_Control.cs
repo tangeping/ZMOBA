@@ -112,7 +112,7 @@ public class UI_Control : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
-        if(!is_update)
+        if (!is_update)
         {
             return;
         }

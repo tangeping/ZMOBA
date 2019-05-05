@@ -17,24 +17,22 @@
 		包发送模块(与服务端网络部分的名称对应)
 		处理网络数据的发送
 	*/
-	public class PacketSenderTCP : PacketSenderBase
-	{
+    public class PacketSenderTCP : PacketSenderBase
+    {
 		private byte[] _buffer;
 
 		int _wpos = 0;				// 写入的数据位置
 		int _spos = 0;				// 发送完毕的数据位置
-
-		object _sendingObj = new object();
-		Boolean _sending = false;
+		int _sending = 0;
 		
-		public PacketSenderTCP(NetworkInterfaceBase networkInterface) : base(networkInterface)
-		{
-			_buffer = new byte[KBEngineApp.app.getInitArgs().TCP_SEND_BUFFER_MAX];
+        public PacketSenderTCP(NetworkInterfaceBase networkInterface) : base(networkInterface)
+        {
+        	_buffer = new byte[KBEngineApp.app.getInitArgs().TCP_SEND_BUFFER_MAX];
 
 			_wpos = 0; 
 			_spos = 0;
-			_sending = false;
-		}
+			_sending = 0;
+        }
 
 		~PacketSenderTCP()
 		{
@@ -47,8 +45,7 @@
 			if (dataLength <= 0)
 				return true;
 
-			Monitor.Enter(_sendingObj);
-			if (!_sending)
+			if (0 == Interlocked.Add(ref _sending, 0))
 			{
 				if (_wpos == _spos)
 				{
@@ -57,7 +54,7 @@
 				}
 			}
 
-			int t_spos =_spos;
+			int t_spos = Interlocked.Add(ref _spos, 0);
 			int space = 0;
 			int tt_wpos = _wpos % _buffer.Length;
 			int tt_spos = t_spos % _buffer.Length;
@@ -87,18 +84,11 @@
 				Array.Copy(stream.data(), stream.rpos + remain, _buffer, 0, expect_total - _buffer.Length);
 			}
 
-			_wpos += dataLength;
+			Interlocked.Add(ref _wpos, dataLength);
 
-			if (!_sending)
+			if (Interlocked.CompareExchange(ref _sending, 1, 0) == 0)
 			{
-				_sending = true;
-				Monitor.Exit(_sendingObj);
-
 				_startSend();
-			}
-			else
-			{
-				Monitor.Exit(_sendingObj);
 			}
 
 			return true;
@@ -116,9 +106,7 @@
 
 			while (true)
 			{
-				Monitor.Enter(_sendingObj);
-
-				int sendSize = _wpos - _spos;
+				int sendSize = Interlocked.Add(ref _wpos, 0) - _spos;
 				int t_spos = _spos % _buffer.Length;
 				if (t_spos == 0)
 					t_spos = sendSize;
@@ -135,22 +123,17 @@
 				{
 					Dbg.ERROR_MSG(string.Format("PacketSenderTCP::_asyncSend(): send data error, disconnect from '{0}'! error = '{1}'", socket.RemoteEndPoint, se));
 					Event.fireIn("_closeNetwork", new object[] { _networkInterface });
-
-					Monitor.Exit(_sendingObj);
 					return;
 				}
 
-				_spos += bytesSent;
+				int spos = Interlocked.Add(ref _spos, bytesSent);
 
 				// 所有数据发送完毕了
-				if (_spos == _wpos)
+				if (spos == Interlocked.Add(ref _wpos, 0))
 				{
-					_sending = false;
-					Monitor.Exit(_sendingObj);
+					Interlocked.Exchange(ref _sending, 0);
 					return;
 				}
-
-				Monitor.Exit(_sendingObj);
 			}
 		}
 	}

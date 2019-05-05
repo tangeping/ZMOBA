@@ -162,7 +162,6 @@
 #endif
 
 						msg.handleMessage(stream);
-
 #if UNITY_EDITOR
 						Dbg.profileEnd(msg.name);
 #endif

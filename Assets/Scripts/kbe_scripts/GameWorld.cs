@@ -113,6 +113,7 @@ public class GameWorld : MonoBehaviour
     {
         Debug.Log("kick, disconnect!, reason=" + KBEngineApp.app.serverErr(failedcode));
         SceneManager.LoadScene("login");
+        SpaceData.Instance.Clear();
 
     }
     public void onDisconnected()

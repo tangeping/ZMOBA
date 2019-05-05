@@ -501,7 +501,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debugLevel: 0
   isMultiThreads: 0
-  ip: 127.0.0.1
+  ip: 47.107.167.72
   port: 20013
   clientType: 7
   networkEncryptType: 0
