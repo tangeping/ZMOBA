@@ -30,6 +30,9 @@ public class CameraButton : MonoBehaviour {
         {
             KBEngine.Event.fireIn("reqRun");
         }
+
+        GUI.Label(new Rect(Screen.width / 2, Screen.height / 6, 600, 30), 
+            "myFrameId:" + SpaceData.Instance.localFrameID() +",frameCount:"+SpaceData.Instance.frameList.Count);
     }
 //     private void Update()
 //     {

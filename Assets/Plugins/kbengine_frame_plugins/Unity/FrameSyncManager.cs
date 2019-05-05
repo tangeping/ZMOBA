@@ -17,8 +17,8 @@ public class FrameSyncManager : MonoBehaviour {
         {
             if (_FrameSyncGlobalConfig == null)
             {
-                _FrameSyncGlobalConfig = (FrameSyncConfig)Resources.Load(serverSettingsAssetFile, typeof(FrameSyncConfig));
-                //Debug.Log("_FrameSyncGlobalConfig.lockedTimeStep:" + _FrameSyncGlobalConfig.lockedTimeStep);
+                _FrameSyncGlobalConfig = Resources.Load<FrameSyncConfig>(serverSettingsAssetFile);
+                Debug.Log("_FrameSyncGlobalConfig.syncWindow:" + _FrameSyncGlobalConfig.syncWindow);
             }
 
             return _FrameSyncGlobalConfig;
@@ -112,7 +112,7 @@ public class FrameSyncManager : MonoBehaviour {
     {
         get
         {
-            if (instance == null)
+            if (instance == null || instance.currFrame == null)
             {
                 return 0;
             }
@@ -131,6 +131,36 @@ public class FrameSyncManager : MonoBehaviour {
             return instance.currFrame.frameid * instance.lockedTimeStep;
         }
     }
+
+    public FP FAccumulateTime
+    {
+        get
+        {
+            if (instance == null)
+            {
+                return 0;
+            }
+
+            return instance.fAccumulateTime;
+        }
+    }
+
+    private FP fAccumulateTime = 0;
+
+    public FP FNextGameTime
+    {
+        get
+        {
+            if (instance == null)
+            {
+                return 0;
+            }
+
+            return instance.fNextGameTime;
+        }
+    }
+
+    private FP fNextGameTime = 0;
 
     /**
      * @brief The coroutine scheduler.
@@ -521,58 +551,82 @@ public class FrameSyncManager : MonoBehaviour {
     }
 
     FP duration;
-    private void FixedUpdate()
+    void FixedUpdate()
     {
         duration += Time.deltaTime;
 
-        if(duration >= DeltaTime)
+        if (duration >= DeltaTime)
         {
-            duration = 0;
             OnUpateInputData();
+        }        
+    }
+
+    private void Update()
+    {
+        //Debug.Log("FrameSyncManager.Update:" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss,fff"));
+
+        if(SpaceData.Instance.localFrameID() > 0 && SpaceData.Instance.frameList.Count > 0)
+        {
+            UInt32 diffWindow = SpaceData.Instance.localFrameID() - CurrFrameID;
+            
+            if(diffWindow >= Config.syncWindow)
+            {
+                while(CurrFrameID /*+ Config.syncWindow*/ < SpaceData.Instance.localFrameID())
+                {
+                    LogicUpdate();
+                }
+            }
+            else
+            {
+                fAccumulateTime += Time.deltaTime;
+
+                while (fAccumulateTime > fNextGameTime)
+                {
+                    LogicUpdate();
+
+                    fNextGameTime += DeltaTime;
+                }
+
+                var factor = (fAccumulateTime + DeltaTime - fNextGameTime) / DeltaTime;
+                UpdateRenderFacotr(factor);
+            }
+        }
+    }
+
+    void LogicUpdate()
+    {
+        if (SpaceData.Instance.frameList.Count > 0)
+        {
+            currFrame = SpaceData.Instance.frameList.Dequeue();
+            Dictionary<int, InputDataBase> dicInputData = new Dictionary<int, InputDataBase>();
+            for (int i = 0; i < SpaceData.Instance.SpacePlayers.Count; i++)
+            {
+                InputData data = new InputData();
+                data.ownerID = SpaceData.Instance.SpacePlayers[i].ownerID;
+                dicInputData[data.ownerID] = data;
+            }
+
+            for (int i = 0; i < currFrame.operation.Count; i++)
+            {
+                FS_ENTITY_DATA e = currFrame.operation[i];
+                InputData data = new InputData();
+                data.Deserialize(e);
+                dicInputData[data.ownerID] = data;
+            }
+            CheckQueuedBehaviours();
+            OnStepUpdate(dicInputData.Values.ToList());
+            PhysicsManager.instance.UpdateStep();
         }
     }
 
     // Update is called once per frame
-    void Update () {
 
 
-        renderTime += Time.deltaTime;
+    // 设置补间动画
+    public void UpdateRenderFacotr( FP factor) 
+    {
 
-        if(renderTime >= timeSlice)
-        {
-            renderTime = 0;
-
-
-            if (SpaceData.Instance.frameList.Count > 0)
-            {
-                int count = SpaceData.Instance.frameList.Count;
-                timeSlice = DeltaTime / (count <= ThresholdFrame ? 1 : count / ThresholdFrame);
-
-                currFrame = SpaceData.Instance.frameList.Dequeue();
-                
-                Dictionary<int, InputDataBase> dicInputData = new Dictionary<int, InputDataBase>();
-                for (int i = 0; i < SpaceData.Instance.SpacePlayers.Count; i++)
-                {
-                    InputData data = new InputData();
-                    data.ownerID = SpaceData.Instance.SpacePlayers[i].ownerID;
-                    dicInputData[data.ownerID] = data;
-                }
-
-                for (int i = 0; i < currFrame.operation.Count; i++)
-                {
-                    FS_ENTITY_DATA e = currFrame.operation[i];
-                    InputData data = new InputData();
-                    data.Deserialize(e);
-                    dicInputData[data.ownerID] = data;
-                }
-
-                CheckQueuedBehaviours();
-                OnStepUpdate(dicInputData.Values.ToList());
-                PhysicsManager.instance.UpdateStep();
-            }
-        }
-	}
-
+    }
     void GetLocalData(InputDataBase playerInputData)
     {
         FrameSyncInput.CurrentInputData = (InputData)playerInputData;

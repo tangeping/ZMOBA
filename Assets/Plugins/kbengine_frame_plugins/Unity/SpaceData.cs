@@ -64,6 +64,20 @@ namespace KBEngine
 
         public GameOverType GameOverResult = GameOverType.UNKOWN;
 
+        public void Clear()
+        {
+            localPlayer = null;
+            SpacePlayers.Clear();
+            frameList.Clear();
+            MonsterCount = 0;
+            RoadList.Clear();
+            Heros.Clear();
+            Props.Clear();
+            Shops.Clear();
+            Skills.Clear();
+            Teams.Clear();
+            files.Clear();
+        }
         public Team getLocalTeam()
         {
             int localTeamID = 0;
@@ -79,6 +93,10 @@ namespace KBEngine
             {
                 return Team.Unkown;
             }
+        }
+        public UInt32 localFrameID()
+        {
+            return localPlayer == null ? 0 : ((KBEngine.AvatarBase)localPlayer.owner).component1.farmeID;
         }
 
         public GameObject getLocalPlayer()

@@ -170,6 +170,8 @@ public class PlayerEntity : GameEntity {
             return;
         }
 
+        LookAtY(target.FPTransform.position);
+
         var skill = SkillBox[currentSkill];
         if (TargetTooFarTooFollow(skill))
         {
@@ -361,6 +363,7 @@ public class PlayerEntity : GameEntity {
         OperationHandling();
         Think();
         UpdateUIpanel();
+        RecordLog();
     }
 
 
@@ -416,6 +419,25 @@ public class PlayerEntity : GameEntity {
         indicator.transform.parent = null;
         indicator.transform.position = pos + Vector3.up * 0.01f;
         indicator.transform.up = normal; // adjust to terrain normal
+    }
+
+    private void RecordLog()
+    {
+        string records = "[" + FrameSyncManager.CurrFrameID.ToString() + "] ";
+
+        records += ("heroID=" + heroID);
+        records += (",currentSkill=" + currentSkill);
+        records += (",state=" + state);
+        records += (",position=" + FPTransform.position);
+        records += (",target=" + (target == null ? "null" : target.name));
+        records += (",health=" + health);
+        records += (",mana=" + mana);
+        records += (",damage=" + damage);
+        records += (",defense=" + defense);
+        records += (",moveSpeed=" + moveSpeed);
+        records += (",revivalTime=" + revivalTime);
+
+        KBEngine.Logger.Debug(records, false, name);
     }
 
 }

@@ -1148,6 +1148,173 @@ namespace KBEngine
 		}
 	}
 
+	public class HERO_BAG : List<Int32>
+	{
+
+	}
+
+	public class FRIEND_LIST : List<Int32>
+	{
+
+	}
+
+	public struct ROOM_KEY
+	{
+		UInt64 value;
+
+		ROOM_KEY(UInt64 value)
+		{
+			this.value = value;
+		}
+
+		public static implicit operator UInt64(ROOM_KEY value)
+		{
+			return value.value;
+		}
+
+		public static implicit operator ROOM_KEY(UInt64 value)
+		{
+			UInt64 tvalue = (UInt64)value;
+			return new ROOM_KEY(tvalue);
+		}
+
+		public static UInt64 MaxValue
+		{
+			get
+			{
+				return UInt64.MaxValue;
+			}
+		}
+
+		public static UInt64 MinValue
+		{
+			get
+			{
+				return UInt64.MinValue;
+			}
+		}
+	}
+
+	public struct MATCH_ID
+	{
+		UInt64 value;
+
+		MATCH_ID(UInt64 value)
+		{
+			this.value = value;
+		}
+
+		public static implicit operator UInt64(MATCH_ID value)
+		{
+			return value.value;
+		}
+
+		public static implicit operator MATCH_ID(UInt64 value)
+		{
+			UInt64 tvalue = (UInt64)value;
+			return new MATCH_ID(tvalue);
+		}
+
+		public static UInt64 MaxValue
+		{
+			get
+			{
+				return UInt64.MaxValue;
+			}
+		}
+
+		public static UInt64 MinValue
+		{
+			get
+			{
+				return UInt64.MinValue;
+			}
+		}
+	}
+
+	public struct MATCH_TYPE
+	{
+		UInt32 value;
+
+		MATCH_TYPE(UInt32 value)
+		{
+			this.value = value;
+		}
+
+		public static implicit operator UInt32(MATCH_TYPE value)
+		{
+			return value.value;
+		}
+
+		public static implicit operator MATCH_TYPE(UInt32 value)
+		{
+			UInt32 tvalue = (UInt32)value;
+			return new MATCH_TYPE(tvalue);
+		}
+
+		public static UInt32 MaxValue
+		{
+			get
+			{
+				return UInt32.MaxValue;
+			}
+		}
+
+		public static UInt32 MinValue
+		{
+			get
+			{
+				return UInt32.MinValue;
+			}
+		}
+	}
+
+	public struct PASSWD
+	{
+		UInt32 value;
+
+		PASSWD(UInt32 value)
+		{
+			this.value = value;
+		}
+
+		public static implicit operator UInt32(PASSWD value)
+		{
+			return value.value;
+		}
+
+		public static implicit operator PASSWD(UInt32 value)
+		{
+			UInt32 tvalue = (UInt32)value;
+			return new PASSWD(tvalue);
+		}
+
+		public static UInt32 MaxValue
+		{
+			get
+			{
+				return UInt32.MaxValue;
+			}
+		}
+
+		public static UInt32 MinValue
+		{
+			get
+			{
+				return UInt32.MinValue;
+			}
+		}
+	}
+
+	public class D_MATCH_REQUEST
+	{
+		public UInt32 utype = 0;
+		public UInt64 matchID = 0;
+		public UInt32 passwd = 0;
+		public SByte teamID = 0;
+
+	}
+
 	public class AVATAR_DATA
 	{
 		public SByte param1 = 0;

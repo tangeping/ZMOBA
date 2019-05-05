@@ -18,6 +18,8 @@ namespace KBEngine
 		public EntityBaseEntityCall_FrameSyncReportBase baseEntityCall = null;
 		public EntityCellEntityCall_FrameSyncReportBase cellEntityCall = null;
 
+		public UInt32 farmeID = 0;
+		public virtual void onFarmeIDChanged(UInt32 oldValue) {}
 		public SByte seatNo = 0;
 		public virtual void onSeatNoChanged(SByte oldValue) {}
 
@@ -42,7 +44,7 @@ namespace KBEngine
 			Method method = sm.idmethods[methodUtype];
 			switch(method.methodUtype)
 			{
-				case 4:
+				case 5:
 					FS_FRAME_DATA onFrameMessage_arg1 = ((DATATYPE_FS_FRAME_DATA)method.args[0]).createFromStreamEx(stream);
 					onFrameMessage(onFrameMessage_arg1);
 					break;
@@ -82,6 +84,22 @@ namespace KBEngine
 				switch(prop.properUtype)
 				{
 					case 9:
+						UInt32 oldval_farmeID = farmeID;
+						farmeID = stream.readUint32();
+
+						if(prop.isBase())
+						{
+							if(owner.inited)
+								onFarmeIDChanged(oldval_farmeID);
+						}
+						else
+						{
+							if(owner.inWorld)
+								onFarmeIDChanged(oldval_farmeID);
+						}
+
+						break;
+					case 10:
 						SByte oldval_seatNo = seatNo;
 						seatNo = stream.readInt8();
 
@@ -108,8 +126,29 @@ namespace KBEngine
 			ScriptModule sm = EntityDef.moduledefs["FrameSyncReport"];
 			Dictionary<UInt16, Property> pdatas = sm.idpropertys;
 
+			UInt32 oldval_farmeID = farmeID;
+			Property prop_farmeID = pdatas[4];
+			if(prop_farmeID.isBase())
+			{
+				if(owner.inited && !owner.inWorld)
+					onFarmeIDChanged(oldval_farmeID);
+			}
+			else
+			{
+				if(owner.inWorld)
+				{
+					if(prop_farmeID.isOwnerOnly() && !owner.isPlayer())
+					{
+					}
+					else
+					{
+						onFarmeIDChanged(oldval_farmeID);
+					}
+				}
+			}
+
 			SByte oldval_seatNo = seatNo;
-			Property prop_seatNo = pdatas[4];
+			Property prop_seatNo = pdatas[5];
 			if(prop_seatNo.isBase())
 			{
 				if(owner.inited && !owner.inWorld)

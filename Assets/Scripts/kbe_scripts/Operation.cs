@@ -20,6 +20,9 @@
                 KBEngine.Event.registerIn("reqReady", this, "reqReady");
                 KBEngine.Event.registerIn("reqStop", this, "reqStop");
                 KBEngine.Event.registerIn("reqRun", this, "reqRun");
+
+                KBEngine.Event.registerIn("reqHeroList", this, "reqHeroList");
+                KBEngine.Event.registerIn("reqSelectHero", this, "reqSelectHero");
             }
         }
 
@@ -28,18 +31,32 @@
             if (this.owner.isPlayer())
             {
                 Debug.Log("---onCellReady---");
+                this.reqHeroList();
+                KBEngine.Event.fireOut("onChooseHeroBegin");
+
                 reqHeroConf();
                 reqRoadConf();
                 reqPropsConf();
                 reqShopConf();
                 reqSkillConf();
-                reqTeamConf();
+                reqTeamConf();               
             }
         }
 
         public override void readyResult(byte result)
         {
             KBEngine.Event.fireOut("readyResult", result);
+        }
+        public void reqHeroList()
+        {
+            cellEntityCall.reqHeroList();
+            Debug.Log("Operation::reqHeroList," + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss,fff"));
+        }
+
+
+        public void reqSelectHero(Int32 heroID)
+        {
+            cellEntityCall.reqSelectHero(heroID);
         }
 
         public void reqReady(Byte ready)
@@ -85,6 +102,21 @@
             cellEntityCall.reqTeamConf();
         }
 
+        public override void broadGameStart()
+        {
+            KBEngine.Event.fireOut("broadGameStart");
+        }
+
+        public override void reqHeroListResult(HERO_BAG heros)
+        {
+            Debug.Log("Operation::reqHeroListResult,heros.Count = " + heros.Count +","+ DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss,fff"));
+            KBEngine.Event.fireOut("reqHeroListResult", heros);
+        }
+
+        public override void reqSelectHeroResult(byte result)
+        {
+            KBEngine.Event.fireOut("reqSelectHeroResult", result);
+        }
 
         public override void rspTeamInfo(D_TEAM_INFOS_LIST teams)
         {
@@ -141,5 +173,8 @@
                 SpaceData.Instance.Skills[item.id] = item;
             }
         }
+
+
+
     }
 }

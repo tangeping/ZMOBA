@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 614d58dc15b4ac9499233cf161edbd17, type: 3}
   m_Name: FrameSyncConfig
   m_EditorClassIdentifier: 
-  syncWindow: 10
+  syncWindow: 3
   rollbackWindow: 0
   panicWindow: 100
   physics2DEnabled: 0

@@ -94,7 +94,7 @@ public class MonsterSpawner : FrameSyncBehaviour
 
     public override void OnSyncedUpdate()
     {
-        if(ReSpwainRemaining() == 0 /*&& SpaceData.Instance.MonsterCount < 10*/)
+        if(ReSpwainRemaining() == 0 /*&& SpaceData.Instance.MonsterCount < 1*/)
         {
             respwainEnd = FrameSyncManager.CurrFrameID + (UInt32)(reSpawnTime / FrameSyncManager.DeltaTime);
             GameObject go =  FrameSyncManager.SyncedInstantiate(monsterPerfab, SpwainPosition, SpwainRotation);

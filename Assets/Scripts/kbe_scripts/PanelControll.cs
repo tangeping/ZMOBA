@@ -39,9 +39,6 @@ public class PanelControll : MonoBehaviour {
         KBEngine.Event.registerOut("onLoginFailed", this, "onLoginFailed");
         KBEngine.Event.registerOut("onLoginSuccessfully", this, "onLoginSuccessfully");
 
-        KBEngine.Event.registerOut("onAvatarEnterWorld", this, "onAvatarEnterWorld");
-        KBEngine.Event.registerOut("onAvatarLeaveWorld", this, "onAvatarLeaveWorld");
-
         KBEngine.Event.registerOut("readyResult", this, "readyResult");
     }
 
@@ -76,8 +73,8 @@ public class PanelControll : MonoBehaviour {
         //连接服务器
 
         KBEngine.Event.fireIn("login", accountText.text, passwdText.text, System.Text.Encoding.UTF8.GetBytes("kbegine_moba_demo"));
-
     }
+
     public void onLoginFailed(UInt16 failedcode)
     {
         if (failedcode == 20)
@@ -138,15 +135,6 @@ public class PanelControll : MonoBehaviour {
         }
     }
 
-    public void onAvatarEnterWorld()
-    {
-        UpdatePlayerList();
-    }
-
-    public void onAvatarLeaveWorld()
-    {
-        UpdatePlayerList();
-    }
     private void ActivePanel(PanelType panelType)
     {
         loginPanel.SetActive(panelType == PanelType.Login);

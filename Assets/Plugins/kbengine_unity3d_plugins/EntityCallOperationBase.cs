@@ -63,6 +63,15 @@ namespace KBEngine
 			sendCall(null);
 		}
 
+		public void reqHeroList()
+		{
+			Bundle pBundle = newCall("reqHeroList", entityComponentPropertyID);
+			if(pBundle == null)
+				return;
+
+			sendCall(null);
+		}
+
 		public void reqPropsConf()
 		{
 			Bundle pBundle = newCall("reqPropsConf", entityComponentPropertyID);
@@ -88,6 +97,16 @@ namespace KBEngine
 			if(pBundle == null)
 				return;
 
+			sendCall(null);
+		}
+
+		public void reqSelectHero(Int32 arg1)
+		{
+			Bundle pBundle = newCall("reqSelectHero", entityComponentPropertyID);
+			if(pBundle == null)
+				return;
+
+			bundle.writeInt32(arg1);
 			sendCall(null);
 		}
 

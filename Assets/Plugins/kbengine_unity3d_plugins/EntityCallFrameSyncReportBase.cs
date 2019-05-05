@@ -42,7 +42,7 @@ namespace KBEngine
 			if(pBundle == null)
 				return;
 
-			((DATATYPE_FS_ENTITY_DATA)EntityDef.id2datatypes[26]).addToStreamEx(bundle, arg1);
+			((DATATYPE_FS_ENTITY_DATA)EntityDef.id2datatypes[29]).addToStreamEx(bundle, arg1);
 			sendCall(null);
 		}
 

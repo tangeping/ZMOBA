@@ -88,11 +88,11 @@
 		
 		// 服务端与客户端的版本号以及协议MD5
 		public string serverVersion = "";
-		public string clientVersion = "2.4.2";
+		public string clientVersion = "2.4.3";
 		public string serverScriptVersion = "";
 		public string clientScriptVersion = "0.1.0";
-		public string serverProtocolMD5 = "78D6E7A3B539900D86F0C2145E44AEB3";
-		public string serverEntitydefMD5 = "F384A4D76AE0ECFE0BCEF1E9E0E0BCEC";
+		public string serverProtocolMD5 = "11FC1EA7FC83874D5C9501F409113B1C";
+		public string serverEntitydefMD5 = "8D64EC916462D9785ED9D9FC473ED0DB";
 		
 		// 当前玩家的实体id与实体类别
 		public UInt64 entity_uuid = 0;

@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114374112695016560}
   - component: {fileID: 114170276169270726}
   m_Layer: 5
-  m_Name: Text
+  m_Name: ChatContext
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -162,6 +162,7 @@ GameObject:
   - component: {fileID: 222658294571490130}
   - component: {fileID: 114338764971813684}
   - component: {fileID: 114532025599548470}
+  - component: {fileID: 114311191377478000}
   m_Layer: 5
   m_Name: ChatPanel
   m_TagString: Untagged
@@ -383,6 +384,17 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+--- !u!114 &114311191377478000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1772634099798578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3e0e00e850bb654f918aec2245613f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114338764971813684
 MonoBehaviour:
   m_ObjectHideFlags: 1
