@@ -132,7 +132,7 @@ public class FrameSyncManager : MonoBehaviour {
         }
     }
 
-    public FP FAccumulateTime
+    public static FP FAccumulateTime
     {
         get
         {
@@ -147,7 +147,7 @@ public class FrameSyncManager : MonoBehaviour {
 
     private FP fAccumulateTime = 0;
 
-    public FP FNextGameTime
+    public static FP FNextGameTime
     {
         get
         {
@@ -161,6 +161,15 @@ public class FrameSyncManager : MonoBehaviour {
     }
 
     private FP fNextGameTime = 0;
+
+    public bool bGamePause = false;
+
+    public static bool BGamePause
+    {
+        set { if (instance != null) instance.bGamePause = value; }
+
+        get { return instance == null ? false : instance.bGamePause; }
+    }
 
     /**
      * @brief The coroutine scheduler.
@@ -564,14 +573,18 @@ public class FrameSyncManager : MonoBehaviour {
     private void Update()
     {
         //Debug.Log("FrameSyncManager.Update:" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss,fff"));
-
-        if(SpaceData.Instance.localFrameID() > 0 && SpaceData.Instance.frameList.Count > 0)
+        if(BGamePause)
+        {
+            return;
+        }
+        
+        if (SpaceData.Instance.localFrameID() > 0 && SpaceData.Instance.frameList.Count > 0)
         {
             UInt32 diffWindow = SpaceData.Instance.localFrameID() - CurrFrameID;
             
             if(diffWindow >= Config.syncWindow)
             {
-                while(CurrFrameID /*+ Config.syncWindow*/ < SpaceData.Instance.localFrameID())
+                for (uint i = CurrFrameID; i < SpaceData.Instance.localFrameID(); i++)
                 {
                     LogicUpdate();
                 }
@@ -579,12 +592,12 @@ public class FrameSyncManager : MonoBehaviour {
             else
             {
                 fAccumulateTime += Time.deltaTime;
-
-                while (fAccumulateTime > fNextGameTime)
+                if (fAccumulateTime > fNextGameTime)
                 {
                     LogicUpdate();
 
                     fNextGameTime += DeltaTime;
+                    //Debug.Log("--fNextGameTime: " + fNextGameTime + ",fNextGameTime:" + fNextGameTime);
                 }
 
                 var factor = (fAccumulateTime + DeltaTime - fNextGameTime) / DeltaTime;
