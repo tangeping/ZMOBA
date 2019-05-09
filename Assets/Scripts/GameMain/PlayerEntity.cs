@@ -387,6 +387,11 @@ public class PlayerEntity : GameEntity {
             {
                 Camera.main.GetComponent<CameraScrolling>().enabled = true;
             }
+
+            if(Input.GetKey(KeyCode.F) && !GameUtils.AnyInputActive())
+            {
+                FrameSyncManager.BGamePause = !FrameSyncManager.BGamePause;
+            }
         }
     }
 
