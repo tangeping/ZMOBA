@@ -1,0 +1,125 @@
+fileFormatVersion: 2
+guid: ed886964b59044e4fae870a3d6ce213c
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: chibang_l
+    100002: chibang_r
+    100004: //RootNode
+    100006: piaodai
+    100008: zi
+    100010: jian
+    100012: glow_1
+    100014: fangsheguang_001
+    100016: fangsheguang_002
+    100018: fangsheguang_003
+    100020: back
+    100022: Group001
+    100024: chibang_l_001
+    100026: chibang_r_001
+    100028: yanwu
+    400000: chibang_l
+    400002: chibang_r
+    400004: //RootNode
+    400006: piaodai
+    400008: zi
+    400010: jian
+    400012: glow_1
+    400014: fangsheguang_001
+    400016: fangsheguang_002
+    400018: fangsheguang_003
+    400020: back
+    400022: Group001
+    400024: chibang_l_001
+    400026: chibang_r_001
+    400028: yanwu
+    2300000: chibang_l
+    2300002: chibang_r
+    2300004: piaodai
+    2300006: zi
+    2300008: jian
+    2300010: glow_1
+    2300012: fangsheguang_001
+    2300014: fangsheguang_002
+    2300016: fangsheguang_003
+    2300018: chibang_l_001
+    2300020: chibang_r_001
+    2300022: yanwu
+    3300000: chibang_l
+    3300002: chibang_r
+    3300004: piaodai
+    3300006: zi
+    3300008: jian
+    3300010: glow_1
+    3300012: fangsheguang_001
+    3300014: fangsheguang_002
+    3300016: fangsheguang_003
+    3300018: chibang_l_001
+    3300020: chibang_r_001
+    3300022: yanwu
+    4300000: piaodai
+    4300002: zi
+    4300004: chibang_r
+    4300006: chibang_l
+    4300008: jian
+    4300010: glow_1
+    4300012: fangsheguang_001
+    4300014: fangsheguang_002
+    4300016: fangsheguang_003
+    4300018: chibang_l_001
+    4300020: chibang_r_001
+    4300022: yanwu
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
